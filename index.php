@@ -78,11 +78,11 @@ function isIgnoredIP() {
     <script src="js/jquery-1.4.2.min.js"></script>
     <script src="js/jquery-ui-1.8.2.custom.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
-    async defer></script>
-
   <!-- Load all custom JavaScript -->
     <script src="js/bpacmap.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
+    async defer></script>
 </head>
 <body style="margin:0px; padding:0px;">
 		<!-- This breaks things as of Sept 15, 2016
