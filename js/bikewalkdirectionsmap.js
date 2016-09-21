@@ -214,12 +214,13 @@ function initialize() {
 	  });
 
 
-	  //Add listener to marker for opening the InfoWindow to get directions
+	  //Add listener to marker for reopening the InfoWindow to see the address and get directions
 	  google.maps.event.addListener(marker, 'click', function(event) {
 //		   	alert("clicked")
 			searchedAddressInfoWindow.open(map,marker);
 		});
 
+	  /* This probably isn't possible when reverse geocoding is enabled:
 	  //Add listener to close the InfoWindow when the user clicks on the map
 	  google.maps.event.addListener(map, 'click', function(event) {
 //		   	alert("clicked")
@@ -228,7 +229,7 @@ function initialize() {
 			document.getElementById('city').blur();
 			document.getElementById('state').blur();
 		});
-
+		*/
 	}
 	// END function initialize()
 
