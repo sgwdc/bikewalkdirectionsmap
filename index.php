@@ -18,7 +18,7 @@ function isIgnoredIP() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Raleigh BPAC Planning Map</title>
+    <title>Bike/Ped Directions Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -105,7 +105,7 @@ function isIgnoredIP() {
 
 	<div><input type="button" name="HideMenuID" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;" onClick="hideMenu(true)" /></div>
 
-		<span class="largetitle">Raleigh BPAC Planning</span>
+		<span class="largetitle">Bike/Ped Directions</span>
 		<span class="smallarial"><strong> | <a href="about.php">About</a></strong></span>
        <br>
 
