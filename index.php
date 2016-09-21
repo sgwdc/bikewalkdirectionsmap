@@ -80,7 +80,7 @@ function isIgnoredIP() {
     -->
 
 	<!-- Load all custom JavaScript -->
-    <script src="js/bpacmap.js"></script>
+    <script src="js/bikewalkdirectionsmap.js"></script>
 
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
