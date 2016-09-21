@@ -74,7 +74,9 @@ function isIgnoredIP() {
 	<?php //}; ?>
 
 	<!-- Load jQuery (Currently only using for Hide Menu) -->
-    <script src="js/jquery-1.4.2.min.js"></script>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <!-- jQuery Migrate plugin to ensure compatibility with jQuery v2 -->
+    <script src="js/jquery-migrate-1.4.1.js"></script>
     <!-- Not currently using since autocomplete is disabled
     <script src="js/jquery-ui-1.8.2.custom.min.js"></script>
     -->
