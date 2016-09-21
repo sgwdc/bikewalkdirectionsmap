@@ -32,7 +32,6 @@ function initialize() {
 	});
 
 	// Reset the form
-	/* SGW
 	document.forms[0].bikeLanes.checked = true;
 	document.forms[0].sharrows.checked = true;
 	document.forms[0].multiUse.checked = true;
@@ -42,7 +41,6 @@ function initialize() {
 	document.forms[0].longTerm.checked = false;
 	document.forms[0].bikeLayer.checked = true;
 	document.forms[0].raleighCouncilDistricts.checked = true;
-	*/
 	
 	directionsService = new google.maps.DirectionsService();
 
@@ -96,39 +94,45 @@ function initialize() {
 	// Display the Google Maps Bike Layer
 	bikeLayer = new google.maps.BicyclingLayer();
 	bikeLayer.setMap(map);
-
-	raleighCouncilDistricts_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/CityCouncilBoundaries2011_v3.kmz', {preserveViewport:true});
+	/* Why is there only a handler for the first layer? -SGW
+	raleighCouncilDistricts_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/CityCouncilBoundaries2011_v3.kmz', {preserveViewport:true});
 	raleighCouncilDistricts_Layer.setMap(map);
+	console.log( google.maps.event.addListenerOnce);
+	console.log( root["raleighCouncilDistricts_Layer"]);
 	google.maps.event.addListenerOnce(root["raleighCouncilDistricts_Layer"], "defaultviewport_changed", function(kmlEvent) {
+		console.log("here");
+		*/
 
+		raleighCouncilDistricts_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/CityCouncilBoundaries2011_v3.kmz', {preserveViewport:true});
+		raleighCouncilDistricts_Layer.setMap(map);
 
-		existingBikeLanes_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/Existing_BikeLanes3.kmz', {preserveViewport:true});
+		existingBikeLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/Existing_BikeLanes3.kmz', {preserveViewport:true});
 		existingBikeLanes_Layer.setMap(map);
 
-		existingSharrows_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/Existing_Sharrows3.kmz', {preserveViewport:true});
+		existingSharrows_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/Existing_Sharrows3.kmz', {preserveViewport:true});
 		existingSharrows_Layer.setMap(map);
 
-		existingMultiUse_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/Existing_MultiUse4.kmz', {preserveViewport:true});
+		existingMultiUse_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/Existing_MultiUse4.kmz', {preserveViewport:true});
 		existingMultiUse_Layer.setMap(map);
 
-		existingWideOutsideLanes_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/Existing_WideOutsideLanes4.kmz', {preserveViewport:true});
+		existingWideOutsideLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/Existing_WideOutsideLanes4.kmz', {preserveViewport:true});
 		existingWideOutsideLanes_Layer.setMap(map);
 
-		futureBikeLanes_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/Future_BikeLanes2.kmz', {preserveViewport:true});
+		futureBikeLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/Future_BikeLanes2.kmz', {preserveViewport:true});
 //		futureBikeLanes_Layer.setMap(map);
 
-		futureSharrows_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/Future_Sharrows2.kmz', {preserveViewport:true});
+		futureSharrows_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/Future_Sharrows2.kmz', {preserveViewport:true});
 //		futureSharrows_Layer.setMap(map);
 
-		longtermBikeLanes_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/LongTerm_BikeLanes3.kmz', {preserveViewport:true});
+		longtermBikeLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/LongTerm_BikeLanes3.kmz', {preserveViewport:true});
 //			longtermBikeLanes_Layer.setMap(map);
 
-		longtermSharrows_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/LongTerm_Sharrows3.kmz', {preserveViewport:true});
+		longtermSharrows_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/LongTerm_Sharrows3.kmz', {preserveViewport:true});
 //			longtermSharrows_Layer.setMap(map);
 
-		longtermWideOutsideLanes_Layer = new google.maps.KmlLayer('http://raleighbpac.org/map/LongTerm_WideOutsideLane3.kmz', {preserveViewport:true});
+		longtermWideOutsideLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/LongTerm_WideOutsideLane3.kmz', {preserveViewport:true});
 //			longtermWideOutsideLanes_Layer.setMap(map);
-	});
+	//});
 	
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();
@@ -330,12 +334,10 @@ function zoomToLevel(newLevel) {
 }
 
 function toggleAllLayers(doSelectAll) {
-	/* SGW
 	document.forms[0].bikeLanes.checked = doSelectAll;
 	document.forms[0].sharrows.checked = doSelectAll;
 	document.forms[0].multiUse.checked = doSelectAll;
 	document.forms[0].wideOutsideLanes.checked = doSelectAll;
-	*/
 	toggleLayer("bikeLanes");
 	toggleLayer("sharrows");
 	toggleLayer("multiUse");
