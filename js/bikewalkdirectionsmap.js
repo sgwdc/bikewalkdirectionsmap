@@ -81,6 +81,10 @@ function initialize() {
 	bikeLayer = new google.maps.BicyclingLayer();
 	bikeLayer.setMap(map);
 
+	// Display the Google Maps TRAFFIC Layer
+	trafficLayer = new google.maps.TrafficLayer();
+	trafficLayer.setMap(map);
+
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();
 
@@ -231,8 +235,8 @@ function initialize() {
 function toggleBikeLayer() {
 	if (document.forms[0].bikeLayer.checked) {
 		bikeLayer.setMap(map);
-//			trafficLayer.setMap(null);
-//			document.forms[0].trafficLayer.checked = false;
+			trafficLayer.setMap(null);
+			document.forms[0].trafficLayer.checked = false;
 	} else{
 		bikeLayer.setMap(null);
 	}

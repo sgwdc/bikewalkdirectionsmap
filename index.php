@@ -115,6 +115,8 @@ function isIgnoredIP() {
 
 		  <span class="smallarial"><strong>Background layers:</strong></span>
           <br />
+          <!-- Colors for Google Bicycle Layer legend -->
+          <div style="float:left; background-color:#004d00; width:15px;">&nbsp;</div>
           <div style="float:left; background-color:#00fe00; width:15px;">&nbsp;</div>
           <label>
               <input type="checkbox" name="bikeLayer" id="bikeLayer" onClick="toggleBikeLayer()" value="yes" <?php /* Why was this disabled-- why not allow turning this layer off? disabled="disabled" */ ?> />
@@ -122,6 +124,16 @@ function isIgnoredIP() {
                   <br />
             <div style="clear:both"></div>
             
+          <!-- Colors for Google Traffic Layer legend -->
+          <div style="float:left; background-color:#3fae14; width:10px;">&nbsp;</div>
+          <div style="float:left; background-color:#f9ca22; width:10px;">&nbsp;</div>
+          <div style="float:left; background-color:#90040d; width:10px;">&nbsp;</div>
+          <label>
+              <input type="checkbox" name="trafficLayer" id="trafficLayer" onClick="toggleTrafficLayer()" value="yes" />
+                <span class="smallarial">Realtime traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." alt="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." /><br />
+            <div style="clear:both"></div>
+
+
         <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 <div>
             <span class="smallarial"><strong>Zoom to:</strong></span>
