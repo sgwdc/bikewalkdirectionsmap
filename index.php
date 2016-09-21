@@ -86,6 +86,10 @@ function isIgnoredIP() {
 
 </head>
 <body style="margin:0px; padding:0px;">
+		<!-- This breaks things as of Sept 15, 2016
+		<form id="layercheckboxes" method="post" action="" style="margin:0;">
+		-->
+
 	<!-- LOAD MAP CANVAS -->
 	<div id="map_canvas" style="width:100%; height:100%">
 		Loading map...
@@ -97,6 +101,7 @@ function isIgnoredIP() {
 
 	<!-- LOAD TITLE (RaleighTransit.Info) -->
 	<div id="leftmenu" style="position:absolute; right:5px; top:48px; width:225px; padding:5px; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.80;filter:alpha(opacity=80);">
+		<form id="layercheckboxes" method="post" action="" style="margin:0;">
 
 	<div><input type="button" name="HideMenuID" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;" onClick="hideMenu(true)" /></div>
 
@@ -172,6 +177,7 @@ function isIgnoredIP() {
 <div>
             <span class="smallarial"><strong>Zoom to:</strong></span>
               <span class="smallarial"><a href="javascript:zoomToLevel('downtownraleigh')">Downtown</a> | <a href="javascript:zoomToLevel('raleigh')">Raleigh</a> | <a href="javascript:zoomToLevel('triangle')">Triangle</a></span>
+	</form>
 </div>
 <div>
 	    <span class="smallarial">
@@ -193,7 +199,7 @@ function isIgnoredIP() {
 
 
 
-	<!-- Load MAXIMIZE BUTTON DIV -->
+  <!-- Load MAXIMIZE BUTTON DIV -->
 	<div id="maximize_legend" style="position:absolute; left:71px; top:100px; border:0px; border-color:#000; border-style:solid; background-color:#FFF; width:16px; padding:0px; opacity:1.00;filter:alpha(opacity=100); visibility:hidden"><a href="javascript:minimize(false, 'legend');"><img src="images/icon_min_transparent_16_maximize.png" border="0"></a></div>
 
 	<!-- LOAD DIRECTIONS DIV -->
