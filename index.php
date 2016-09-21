@@ -15,10 +15,9 @@ function isIgnoredIP() {
 }
 */
 ?>
-
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Raleigh BPAC Planning Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
@@ -74,15 +73,19 @@ function isIgnoredIP() {
         </script>
 	<?php //}; ?>
 
-	<!-- Load jQuery -->
+	<!-- Load jQuery (Currently only using for Hide Menu) -->
     <script src="js/jquery-1.4.2.min.js"></script>
+    <!-- Not currently using jQuery UI:
     <script src="js/jquery-ui-1.8.2.custom.min.js"></script>
+    -->
 
-  <!-- Load all custom JavaScript -->
+	<!-- Load all custom JavaScript -->
     <script src="js/bpacmap.js"></script>
 
+    <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
     async defer></script>
+
 </head>
 <body style="margin:0px; padding:0px;">
 		<!-- This breaks things as of Sept 15, 2016
@@ -112,13 +115,6 @@ function isIgnoredIP() {
           <label><input type="checkbox" name="current" id="current" value="yes" checked="checked" onClick="updateVisibleLayers()" /><strong>Current</strong></label><label><input type="checkbox" name="future" id="future" value="yes" onClick="updateVisibleLayers()" /><strong>Future</strong></label><label><input type="checkbox" name="longTerm" id="longTerm" value="yes" onClick="updateVisibleLayers()" /><strong>Long-term</strong></label>
           
   		<br>
-		<script language="javascript">
-		jQuery(document).ready(function() {
-			jQuery('#NearFuture').attr('disabled', 'true');
-			jQuery('#LongTerm').attr('disabled', 'true');
-		});
-        </script>
-
         <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 
 		  <span class="smallarial"><strong>Show bike facilities:</strong><!-- <font size=-1>[ <a href="javascript:toggleAllLayers(false)">Clear All</a> ]</font>--></span>
@@ -177,8 +173,10 @@ function isIgnoredIP() {
             <span class="smallarial"><strong>Zoom to:</strong></span>
               <span class="smallarial"><a href="javascript:zoomToLevel('downtownraleigh')">Downtown</a> | <a href="javascript:zoomToLevel('raleigh')">Raleigh</a> | <a href="javascript:zoomToLevel('triangle')">Triangle</a></span>
 	</form>
-</div>
-<div>
+	</div>
+	<!-- END of #controls -->
+
+	<div>
 	    <span class="smallarial">
            <strong>Find address:</strong>
                 <input id="address"  type="text" value="" style="width:125px; font-size:10px" onKeyDown="keyPressed(event)" /><br>
@@ -187,23 +185,8 @@ function isIgnoredIP() {
                  <strong>State:</strong>
                 <input id="state"  type="text" value="NC" style="width:25px; font-size:10px"  onkeydown="keyPressed(event)" />
                 <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find" style="width:40px; font-size:10px; font-weight:bold;" onClick="codeAddress()">
-      </span>
-</div>
-
-
-
-
-
-
-
-
-
-  <!-- Load MAXIMIZE BUTTON DIV -->
-	<div id="maximize_legend" style="position:absolute; left:71px; top:100px; border:0px; border-color:#000; border-style:solid; background-color:#FFF; width:16px; padding:0px; opacity:1.00;filter:alpha(opacity=100); visibility:hidden"><a href="javascript:minimize(false, 'legend');"><img src="images/icon_min_transparent_16_maximize.png" border="0"></a></div>
-
-	<!-- LOAD DIRECTIONS DIV -->
-	<div id="directions_panel" style="position:absolute; left:70px; top:99px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.80;filter:alpha(opacity=80); visibility:hidden;">
+		</span>
+		</div>
 	</div>
-
-  </body>
+   </body>
 </html>
