@@ -482,18 +482,7 @@ function isIgnoredIP() {
               -->
 
 
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map_canvas'), {
-          center: {lat: 38.9393885, lng: -77.023365},
-          zoom: 12
-        });
-        // Call to bpacmap.js
-        //initialize();
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
     async defer></script>
 
 	<!-- Load all custom JavaScript -->
