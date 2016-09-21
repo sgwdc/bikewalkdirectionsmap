@@ -15,10 +15,6 @@ var stepDisplay;
 var fromAddressText;
 // be sure to add new layers here:
 var bikeLayer;
-var bikeLanes_Layer;
-var sharrows_Layer;
-var multiUse_Layer;
-var wideOutsideLanes_Layer;
 var searchedAddressInfoWindow;
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -32,15 +28,7 @@ function initialize() {
 	});
 
 	// Reset the form
-	document.forms[0].bikeLanes.checked = true;
-	document.forms[0].sharrows.checked = true;
-	document.forms[0].multiUse.checked = true;
-	document.forms[0].wideOutsideLanes.checked = true;
-	document.forms[0].current.checked = true;
-	document.forms[0].future.checked = false;
-	document.forms[0].longTerm.checked = false;
 	document.forms[0].bikeLayer.checked = true;
-	document.forms[0].raleighCouncilDistricts.checked = true;
 	
 	directionsService = new google.maps.DirectionsService();
 
@@ -93,36 +81,6 @@ function initialize() {
 	bikeLayer = new google.maps.BicyclingLayer();
 	bikeLayer.setMap(map);
 
-	raleighCouncilDistricts_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/CityCouncilBoundaries2011_v3.kmz', {preserveViewport:true});
-	raleighCouncilDistricts_Layer.setMap(map);
-
-	existingBikeLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/Existing_BikeLanes3.kmz', {preserveViewport:true});
-	existingBikeLanes_Layer.setMap(map);
-
-	existingSharrows_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/Existing_Sharrows3.kmz', {preserveViewport:true});
-	existingSharrows_Layer.setMap(map);
-
-	existingMultiUse_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/Existing_MultiUse4.kmz', {preserveViewport:true});
-	existingMultiUse_Layer.setMap(map);
-
-	existingWideOutsideLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/Existing_WideOutsideLanes4.kmz', {preserveViewport:true});
-	existingWideOutsideLanes_Layer.setMap(map);
-
-	futureBikeLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/Future_BikeLanes2.kmz', {preserveViewport:true});
-//		futureBikeLanes_Layer.setMap(map);
-
-	futureSharrows_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/Future_Sharrows2.kmz', {preserveViewport:true});
-//		futureSharrows_Layer.setMap(map);
-
-	longtermBikeLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/LongTerm_BikeLanes3.kmz', {preserveViewport:true});
-//			longtermBikeLanes_Layer.setMap(map);
-
-	longtermSharrows_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/LongTerm_Sharrows3.kmz', {preserveViewport:true});
-//			longtermSharrows_Layer.setMap(map);
-
-	longtermWideOutsideLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/LongTerm_WideOutsideLane3.kmz', {preserveViewport:true});
-//			longtermWideOutsideLanes_Layer.setMap(map);
-	
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();
 
@@ -270,144 +228,6 @@ function initialize() {
 	}
 	// END function initialize()
 
-/* Removed support for toggline multiple layers at once */
-//	function toggleLayer(checkboxName, layerNames_array) {
-function toggleLayer(checkboxName) {
-	if (checkboxName == "bikeLanes") {
-		if (document.forms[0][checkboxName].checked) {
-			root["existingBikeLanes_Layer"].setMap(map, false);
-		} else {
-			root["existingBikeLanes_Layer"].setMap(null);
-		}
-	} else if (checkboxName == "sharrows") {
-		if (document.forms[0][checkboxName].checked) {
-			root["existingSharrows_Layer"].setMap(map, false);
-		} else {
-			root["existingSharrows_Layer"].setMap(null);
-		}
-	} else if (checkboxName == "multiUse") {
-		if (document.forms[0][checkboxName].checked) {
-			root["existingMultiUse_Layer"].setMap(map, false);
-		} else {
-			root["existingMultiUse_Layer"].setMap(null);
-		}
-	} else if (checkboxName == "wideOutsideLanes") {
-		if (document.forms[0][checkboxName].checked) {
-			root["existingWideOutsideLanes_Layer"].setMap(map, false);
-		} else {
-			root["existingWideOutsideLanes_Layer"].setMap(null);
-		}
-	} else if (checkboxName == "raleighCouncilDistricts") {
-		if (document.forms[0][checkboxName].checked) {
-			root["raleighCouncilDistricts_Layer"].setMap(map, false);
-		} else {
-			root["raleighCouncilDistricts_Layer"].setMap(null);
-		}
-	} else {
-		alert("toggleLayer() received checkboxName= " + checkboxName);
-	}
-}
-
-function updateVisibleLayers() {
-	// If "Current" is selected
-	if (document.forms[0]['current'].checked) {
-		// if "Bike lanes" is selected, but NOT visible
-		if (document.forms[0]['bikeLanes'].checked && root["existingBikeLanes_Layer"].getMap() == undefined) {
-			root["existingBikeLanes_Layer"].setMap(map, false);
-		// If "Bike lanes" is NOT selected
-		} else if (!document.forms[0]['bikeLanes'].checked) {
-			root["existingBikeLanes_Layer"].setMap(null);
-		}
-		
-		// if "Sharrows" is selected, but NOT visible
-		if (document.forms[0]['sharrows'].checked && root["existingSharrows_Layer"].getMap() == undefined) {
-			root["existingSharrows_Layer"].setMap(map, false);
-		// If "Sharrows" is NOT selected
-		} else if (!document.forms[0]['sharrows'].checked) {
-			root["existingSharrows_Layer"].setMap(null);
-		}
-
-		// if "Wide outside lanes" is selected, but NOT visible
-		if (document.forms[0]['wideOutsideLanes'].checked && root["existingWideOutsideLanes_Layer"].getMap() == undefined) {
-			root["existingWideOutsideLanes_Layer"].setMap(map, false);
-		// If "Wide outside lanes" is NOT selected
-		} else if (!document.forms[0]['wideOutsideLanes'].checked) {
-			root["existingWideOutsideLanes_Layer"].setMap(null);
-		}
-
-		// if "Multi-use paths" is selected, but NOT visible
-		if (document.forms[0]['multiUse'].checked && root["existingMultiUse_Layer"].getMap() == undefined) {
-			root["existingMultiUse_Layer"].setMap(map, false);
-		// If "Multi-use paths" is NOT selected
-		} else if (!document.forms[0]['multiUse'].checked) {
-			root["existingMultiUse_Layer"].setMap(null);
-		}
-	} else {
-		root["existingBikeLanes_Layer"].setMap(null);
-		root["existingSharrows_Layer"].setMap(null);
-		root["existingWideOutsideLanes_Layer"].setMap(null);
-		root["existingMultiUse_Layer"].setMap(null);
-	}
-
-	// If "Future" is selected
-	if (document.forms[0]['future'].checked) {
-		// if "Bike lanes" is selected, but NOT visible
-		if (document.forms[0]['bikeLanes'].checked && root["futureBikeLanes_Layer"].getMap() == undefined) {
-			root["futureBikeLanes_Layer"].setMap(map, false);
-		// If "Bike lanes" is NOT selected
-		} else if (!document.forms[0]['bikeLanes'].checked) {
-			root["futureBikeLanes_Layer"].setMap(null);
-		}
-		
-		// if "Sharrows" is selected, but NOT visible
-		if (document.forms[0]['sharrows'].checked && root["futureSharrows_Layer"].getMap() == undefined) {
-			root["futureSharrows_Layer"].setMap(map, false);
-		// If "Sharrows" is NOT selected
-		} else if (!document.forms[0]['sharrows'].checked) {
-			root["futureSharrows_Layer"].setMap(null);
-		}
-	} else {
-		root["futureBikeLanes_Layer"].setMap(null);
-		root["futureSharrows_Layer"].setMap(null);
-/* These layers don't exist yet
-		root["futureWideOutsideLanes_Layer"].setMap(null);
-		root["futureMultiUse_Layer"].setMap(null);
-*/
-	}
-	
-	// If "Current" is selected
-	if (document.forms[0]['longTerm'].checked) {
-		// if "Bike lanes" is selected, but NOT visible
-		if (document.forms[0]['bikeLanes'].checked && root["longtermBikeLanes_Layer"].getMap() == undefined) {
-			root["longtermBikeLanes_Layer"].setMap(map, false);
-		// If "Bike lanes" is NOT selected
-		} else if (!document.forms[0]['bikeLanes'].checked) {
-			root["longtermBikeLanes_Layer"].setMap(null);
-		}
-		
-		// if "Sharrows" is selected, but NOT visible
-		if (document.forms[0]['sharrows'].checked && root["longtermSharrows_Layer"].getMap() == undefined) {
-			root["longtermSharrows_Layer"].setMap(map, false);
-		// If "Sharrows" is NOT selected
-		} else if (!document.forms[0]['sharrows'].checked) {
-			root["longtermSharrows_Layer"].setMap(null);
-		}
-
-		// if "Wide outside lanes" is selected, but NOT visible
-		if (document.forms[0]['wideOutsideLanes'].checked && root["longtermWideOutsideLanes_Layer"].getMap() == undefined) {
-			root["longtermWideOutsideLanes_Layer"].setMap(map, false);
-		// If "Wide outside lanes" is NOT selected
-		} else if (!document.forms[0]['wideOutsideLanes'].checked) {
-			root["longtermWideOutsideLanes_Layer"].setMap(null);
-		}
-	} else {
-		root["longtermBikeLanes_Layer"].setMap(null);
-		root["longtermSharrows_Layer"].setMap(null);
-		root["longtermWideOutsideLanes_Layer"].setMap(null);
-//			root["longtermMultiUse_Layer"].setMap(null);
-	}
-}
-
 function toggleBikeLayer() {
 	if (document.forms[0].bikeLayer.checked) {
 		bikeLayer.setMap(map);
@@ -445,17 +265,6 @@ function zoomToLevel(newLevel) {
 		map.setCenter(downtownRaleighLocation);		
 		map.setZoom(15);
 	}
-}
-
-function toggleAllLayers(doSelectAll) {
-	document.forms[0].bikeLanes.checked = doSelectAll;
-	document.forms[0].sharrows.checked = doSelectAll;
-	document.forms[0].multiUse.checked = doSelectAll;
-	document.forms[0].wideOutsideLanes.checked = doSelectAll;
-	toggleLayer("bikeLanes");
-	toggleLayer("sharrows");
-	toggleLayer("multiUse");
-	toggleLayer("wideOutsideLanes");
 }
 
 /* OBSOLETED AND INTEGRATED INTO WHAT WAS FORMERLY getDirections2() -Un-obsoleted -SGW */

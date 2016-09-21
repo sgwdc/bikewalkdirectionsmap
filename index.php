@@ -108,47 +108,13 @@ function isIgnoredIP() {
 		<span class="largetitle">Raleigh BPAC Planning</span>
 		<span class="smallarial"><strong> | <a href="about.php">About</a></strong></span>
        <br>
-		  <span class="smallarial"><strong>Time period:</strong><br />
-          
-          <label><input type="checkbox" name="current" id="current" value="yes" checked="checked" onClick="updateVisibleLayers()" /><strong>Current</strong></label><label><input type="checkbox" name="future" id="future" value="yes" onClick="updateVisibleLayers()" /><strong>Future</strong></label><label><input type="checkbox" name="longTerm" id="longTerm" value="yes" onClick="updateVisibleLayers()" /><strong>Long-term</strong></label>
-          
-  		<br>
-        <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 
-		  <span class="smallarial"><strong>Show bike facilities:</strong><!-- <font size=-1>[ <a href="javascript:toggleAllLayers(false)">Clear All</a> ]</font>--></span>
-          <br />
-
-            <div style="float:left; background-color:#ff0000; width:30px;">&nbsp;</div>
-            <label>                  
-              <input type="checkbox" name="bikeLanes" id="bikeLanes" onClick="updateVisibleLayers()" value="yes" checked="checked" />
-                <span class="smallarial">Bike lanes</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="" alt="" />--><br />
-            <div style="clear:both"></div>
-
-              <div style="float:left; background-color:#ffaa00; width:30px;">&nbsp;</div>
-            <label>                  
-              <input type="checkbox" name="sharrows" id="sharrows" onClick="updateVisibleLayers()" value="yes" checked="checked" />
-                <span class="smallarial">Sharrows</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="" alt="Sharrows (shared lane markings) " />--><br />
-            <div style="clear:both"></div>
-
-              <div style="float:left; background-color:#ffff00; width:30px;">&nbsp;</div>
-            <label>                  
-              <input type="checkbox" name="wideOutsideLanes" id="wideOutsideLanes" onClick="updateVisibleLayers()" value="yes" checked="checked" />
-                <span class="smallarial">Wide outside lanes</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="" alt="" />--><br />
-            <div style="clear:both"></div>
-
-              <div style="float:left; background-color:#0000ff; width:30px;">&nbsp;</div>
-            <label>                  
-              <input type="checkbox" name="multiUse" id="multiUse" onClick="updateVisibleLayers()" value="yes" checked="checked" />
-                <span class="smallarial">Multi-use paths</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="" alt="" />--><br />
-            <div style="clear:both"></div>
 
 
         <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 
 		  <span class="smallarial"><strong>Background layers:</strong></span>
           <br />
-
-          <div style="float:left; background-color:#004d00; width:15px;">&nbsp;</div>
           <div style="float:left; background-color:#00fe00; width:15px;">&nbsp;</div>
           <label>
               <input type="checkbox" name="bikeLayer" id="bikeLayer" onClick="toggleBikeLayer()" value="yes" <?php /* Why was this disabled-- why not allow turning this layer off? disabled="disabled" */ ?> />
@@ -156,16 +122,6 @@ function isIgnoredIP() {
                   <br />
             <div style="clear:both"></div>
             
-            <div style="float:left; background-color:rgb(7,198,211); width:6px;">&nbsp;</div>
-            <div style="float:left; background-color:rgb(153,81,32); width:6px;">&nbsp;</div>
-            <div style="float:left; background-color:rgb(201,212,79); width:6px;">&nbsp;</div>
-            <div style="float:left; background-color:rgb(185,20,80); width:6px;">&nbsp;</div>
-            <div style="float:left; background-color:rgb(4,77,159); width:6px;">&nbsp;</div>
-            <label>                  
-              <input type="checkbox" name="raleighCouncilDistricts" id="raleighCouncilDistricts" onClick="toggleLayer('raleighCouncilDistricts')" value="yes" <?php /* Why was this disabled-- why not allow turning this layer off? disabled="disabled" */ ?> />
-                <span class="smallarial">Raleigh Council Districts</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Raleigh City Council Districts" alt="Raleigh City Council Districts" />--><br />
-            <div style="clear:both"></div>
-
         <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 <div>
             <span class="smallarial"><strong>Zoom to:</strong></span>
