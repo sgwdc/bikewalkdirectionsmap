@@ -88,6 +88,7 @@ function initialize() {
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();
 
+	/* Don't use autocomplete in this app because it creates the impression no other addresses are valid, and it covers up the other input fields -SGW
 	// Create handlers for address autocomplete, map clicks, etc.
 	$(function() {
 		$("#address").autocomplete({
@@ -146,30 +147,6 @@ function initialize() {
 			'</form>');
 				// Go ahead and display the InfoWindow for the marker
 				searchedAddressInfoWindow.open(map, marker);
-		  }
-		});
-	  });
-
-	/* ALSO DISABLED FOR NOW:
-	  //Add listener to marker for reverse geocoding
-	  google.maps.event.addListener(marker, 'dragend', function() {
-//		alert("marker.getPosition()= " + marker.getPosition());
-		geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-		  if (status == google.maps.GeocoderStatus.OK) {
-			if (results[0]) {
-			  $('#address').val(results[0].formatted_address);
-			  $('#latitude').val(marker.getPosition().lat());
-			  $('#longitude').val(marker.getPosition().lng());
-			  
-				// Store the selected address so we can replace it later
-				currentLocationDisplay = results[0].formatted_address;
-//				alert("checkpoint1a: " + marker.title);
-//				marker.title = results[0].formatted_address;
-//				alert("checkpoint1b: " + marker.title);
-				marker.setTitle(results[0].formatted_address);
-
-			  
-			}
 		  }
 		});
 	  });
@@ -545,6 +522,7 @@ function codeAddress() {
 		  }
 		  
 //			directionsDisplay.setMap(null);
+		//clearDirections();
 		//clearAddressMarker();
 		  
 		map.setCenter(firstAddress.geometry.location);

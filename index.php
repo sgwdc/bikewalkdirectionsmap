@@ -75,7 +75,9 @@ function isIgnoredIP() {
 
 	<!-- Load jQuery (Currently only using for Hide Menu) -->
     <script src="js/jquery-1.4.2.min.js"></script>
+    <!-- Not currently using since autocomplete is disabled
     <script src="js/jquery-ui-1.8.2.custom.min.js"></script>
+    -->
 
 	<!-- Load all custom JavaScript -->
     <script src="js/bikewalkdirectionsmap.js"></script>
