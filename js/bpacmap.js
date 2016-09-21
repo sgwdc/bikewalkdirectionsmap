@@ -12,12 +12,13 @@ var bikeLanes_Layer;
 var sharrows_Layer;
 var multiUse_Layer;
 var wideOutsideLanes_Layer;
+var searchedAddressInfoWindow;
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 // This is called by the jQuery function above
 function initialize() {
-	var searchedAddressInfoWindow = new google.maps.InfoWindow({
+	searchedAddressInfoWindow = new google.maps.InfoWindow({
 		content: "",
 		size: new google.maps.Size(50,50),
 		maxWidth: 500
@@ -114,6 +115,26 @@ function initialize() {
 
 	longtermWideOutsideLanes_Layer = new google.maps.KmlLayer('http://livingstreets.com/portfolio/bpacmap/LongTerm_WideOutsideLane3.kmz', {preserveViewport:true});
 //			longtermWideOutsideLanes_Layer.setMap(map);
+	
+	//GEOCODER
+	geocoder = new google.maps.Geocoder();
+
+
+	  //Add listener to marker for opening the InfoWindow to get directions
+	  google.maps.event.addListener(marker, 'click', function(event) {
+//		   	alert("clicked")
+			searchedAddressInfoWindow.open(map,marker);
+		});
+
+	  //Add listener to close the InfoWindow when the user clicks on the map
+	  google.maps.event.addListener(map, 'click', function(event) {
+//		   	alert("clicked")
+			searchedAddressInfoWindow.close();
+			document.getElementById('address').blur();
+			document.getElementById('city').blur();
+			document.getElementById('state').blur();
+		});
+
 	}
 	// END function initialize()
 
@@ -293,6 +314,64 @@ function toggleAllLayers(doSelectAll) {
 	toggleLayer("sharrows");
 	toggleLayer("multiUse");
 	toggleLayer("wideOutsideLanes");
+}
+
+// Handler to allow ENTER key to submit the "Enter address" form
+function keyPressed(event) {
+	if ((event.which && event.which == 13) || 
+		(event.keyCode && event.keyCode == 13))
+		{document.getElementById('myHtmlInputButton').click();
+		return false;
+	} 
+	else return true;		
+}
+
+function codeAddress() {
+//    var address = document.getElementById("address").value;
+	var addressToSearchFor = document.getElementById("address").value + ", " + document.getElementById("city").value + ", " + document.getElementById("state").value;
+
+	geocoder.geocode( { 'address': addressToSearchFor}, function(results, status) {
+	var firstAddress = results[0];
+			/*													 
+	debugText = "";
+	for (oneItem in results[0]) {
+		debugText += oneItem + "= " + results[0][oneItem] + "\n";	
+	}
+	 alert("results= " + debugText);
+	 */
+	  if (status == google.maps.GeocoderStatus.OK) {
+		  if (firstAddress.formatted_address == "Raleigh, NC, USA") {
+			  alert("Please enter a valid address, and click 'Enter'");
+			  return;
+		  }
+		  
+//			directionsDisplay.setMap(null);
+		//clearAddressMarker();
+		  
+		map.setCenter(firstAddress.geometry.location);
+		map.setZoom(16);
+		/*
+		var marker = new google.maps.Marker({
+			map: map, 
+			position: results[0].geometry.location
+		});
+		*/
+		marker.setMap(map);
+		marker.setPosition(firstAddress.geometry.location);
+		marker.setTitle("Click for directions");
+		
+		// Split the formatted address into pieces
+		var addressPieces = firstAddress.formatted_address.split(', ');
+		var twoLineAddress = addressPieces[0] + '<br>' + addressPieces[1] + ', ' + addressPieces[2];
+		searchedAddressInfoWindow.setContent('<span class="smallarial">' + '<strong>Found address:</strong><br>' + twoLineAddress + '</span>');
+	
+		// Go ahead and display the InfoWindow for the marker
+		searchedAddressInfoWindow.open(map, marker);
+		
+	  } else {
+		alert("Geocode was not successful for the following reason: " + status);
+	  }
+	});
 }
 
 function hideMenu(changeToHidden) {
