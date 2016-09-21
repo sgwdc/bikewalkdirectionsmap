@@ -15,9 +15,35 @@ var stepDisplay;
 var fromAddressText;
 // be sure to add new layers here:
 var bikeLayer;
+var trafficLayer;
 var searchedAddressInfoWindow;
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// Run once jQuery has finished loading
+jQuery(document).ready(function() {
+	// Define event handler for Google Bicycle Layer checkbox
+	jQuery('form input#bikeLayer:checkbox').on('change', function(event) {
+		if (jQuery(this).is(':checked')) {
+			bikeLayer.setMap(map);
+			trafficLayer.setMap(null);
+			jQuery(jQuery('form input#trafficLayer:checkbox')).prop('checked', false);
+		} else{
+			bikeLayer.setMap(null);
+		}
+	});
+
+	// Define event handler for Google Traffic Layer checkbox
+	jQuery('form input#trafficLayer:checkbox').on('change', function(event) {
+		if (jQuery(this).is(':checked')) {
+			trafficLayer.setMap(map);
+			bikeLayer.setMap(null);
+			jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', false);
+		} else{
+			trafficLayer.setMap(null);
+		}
+	});
+});
 
 // This is called by the jQuery function above
 function initialize() {
@@ -209,26 +235,6 @@ function initialize() {
 		*/
 	}
 	// END function initialize()
-
-function toggleBikeLayer() {
-	if (document.forms[0].bikeLayer.checked) {
-		bikeLayer.setMap(map);
-			trafficLayer.setMap(null);
-			document.forms[0].trafficLayer.checked = false;
-	} else{
-		bikeLayer.setMap(null);
-	}
-}
-
-function toggleTrafficLayer() {
-	if (document.forms[0].trafficLayer.checked) {
-		trafficLayer.setMap(map);
-		bikeLayer.setMap(null);
-		document.forms[0].bikeLayer.checked = false;
-	} else{
-		trafficLayer.setMap(null);
-	}
-}
 
 function zoomToLevel(newLevel) {
 	if (newLevel == "triangle") {

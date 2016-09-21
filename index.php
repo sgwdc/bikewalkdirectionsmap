@@ -90,10 +90,6 @@ function isIgnoredIP() {
 
 </head>
 <body style="margin:0px; padding:0px;">
-		<!-- This breaks things as of Sept 15, 2016
-		<form id="layercheckboxes" method="post" action="" style="margin:0;">
-		-->
-
 	<!-- LOAD MAP CANVAS -->
 	<div id="map_canvas" style="width:100%; height:100%">
 		Loading map...
@@ -105,7 +101,7 @@ function isIgnoredIP() {
 
 	<!-- LOAD TITLE (RaleighTransit.Info) -->
 	<div id="leftmenu" style="position:absolute; right:5px; top:48px; width:225px; padding:5px; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.80;filter:alpha(opacity=80);">
-		<form id="layercheckboxes" method="post" action="" style="margin:0;">
+		<form method="post" action="" style="margin:0;">
 
 	<div><input type="button" name="HideMenuID" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;" onClick="hideMenu(true)" /></div>
 
@@ -123,7 +119,7 @@ function isIgnoredIP() {
           <div style="float:left; background-color:#004d00; width:15px;">&nbsp;</div>
           <div style="float:left; background-color:#00fe00; width:15px;">&nbsp;</div>
           <label>
-              <input type="checkbox" name="bikeLayer" id="bikeLayer" onClick="toggleBikeLayer()" value="yes" <?php /* Why was this disabled-- why not allow turning this layer off? disabled="disabled" */ ?> />
+              <input type="checkbox" name="bikeLayer" id="bikeLayer" value="" />
                 <span class="smallarial">Google Bicycle Layer</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths. Turn off this layer to see regular Google Maps." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths. Turn off this layer to see regular Google Maps." />-->
                   <br />
             <div style="clear:both"></div>
@@ -133,7 +129,7 @@ function isIgnoredIP() {
           <div style="float:left; background-color:#f9ca22; width:10px;">&nbsp;</div>
           <div style="float:left; background-color:#90040d; width:10px;">&nbsp;</div>
           <label>
-              <input type="checkbox" name="trafficLayer" id="trafficLayer" onClick="toggleTrafficLayer()" value="yes" />
+              <input type="checkbox" name="trafficLayer" id="trafficLayer" value="" />
                 <span class="smallarial">Realtime traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." alt="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." /><br />
             <div style="clear:both"></div>
 
