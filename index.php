@@ -186,5 +186,14 @@ function isIgnoredIP() {
 		</span>
 		</div>
 	</div>
+
+  <!-- Load MINIMIZE BUTTON DIV -->
+    <!-- The JavaScript doesn't work right now because I merged the title DIV with the layers DIV:
+  <div id="minimize_legend" style="position:absolute; left:292px; top:26px; border:0px; border-color:#000; border-style:solid; background-color:#FFF; width:16px; padding:0px; opacity:1.00;filter:alpha(opacity=100);"><a href="javascript:minimize(true, 'legend');"><img src="images/icon_min_transparent.png" border="0"></a></div>
+  -->
+  
+  <!-- Load MAXIMIZE BUTTON DIV -->
+  <div id="maximize_legend" style="position:absolute; left:71px; top:100px; border:0px; border-color:#000; border-style:solid; background-color:#FFF; width:16px; padding:0px; opacity:1.00;filter:alpha(opacity=100); visibility:hidden"><a href="javascript:minimize(false, 'legend');"><img src="images/icon_min_transparent_16_maximize.png" border="0"></a></div>
+
    </body>
 </html>
