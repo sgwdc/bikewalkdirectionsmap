@@ -78,6 +78,12 @@ function isIgnoredIP() {
     <script src="js/jquery-1.4.2.min.js"></script>
     <script src="js/jquery-ui-1.8.2.custom.min.js"></script>
 
+  <!-- Load all custom JavaScript -->
+    <script src="js/bpacmap.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
+    async defer></script>
+
 </head>
 <body style="margin:0px; padding:0px;">
 	<!-- LOAD MAP CANVAS -->
@@ -193,12 +199,6 @@ function isIgnoredIP() {
 	<!-- LOAD DIRECTIONS DIV -->
 	<div id="directions_panel" style="position:absolute; left:70px; top:99px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.80;filter:alpha(opacity=80); visibility:hidden;">
 	</div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOfx4wE7bdVp_1rW8dONgMrlI1V55Lb78&callback=initialize"
-    async defer></script>
-
-  <!-- Load all custom JavaScript -->
-    <script src="js/bpacmap.js"></script>
 
   </body>
 </html>
