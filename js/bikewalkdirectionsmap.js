@@ -535,9 +535,8 @@ function geocodeCallback(results, status) {
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter starting address:</strong><br>' +
 			'<input type="text" id="fromaddress" value="" style="width:200px; font-size:10px"><br>' +
-			'<strong>City:</strong> <input id="fromcity"  type="text" value="Raleigh" style="width:105px; font-size:10px" />' +
-			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="NC" style="width:25px; font-size:10px" />' +
-			//                <input type="button" value="Find" onClick="codeAddress()">
+			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:105px; font-size:10px" />' +
+			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:25px; font-size:10px" />' +
 
 			'<br><input type="submit" value="Get directions">' +
 
