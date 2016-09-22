@@ -516,7 +516,7 @@ function geocodeCallback(results, status) {
 		// Center the map on the geocoded address
 		map.setCenter(firstAddress.geometry.location);
 		// Zoom in on the geocoded address
-		map.setZoom(16);
+		map.setZoom(13);
 		marker.setMap(map);
 		marker.setPosition(firstAddress.geometry.location);
 		// Set the marker's rollover text
