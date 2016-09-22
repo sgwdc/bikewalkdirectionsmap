@@ -18,7 +18,7 @@ function isIgnoredIP() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bicycling &amp; Walking Trip Planning Directions</title>
+    <title>Bicycling/Walking/Transit Trip Planning Directions</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -100,27 +100,25 @@ function isIgnoredIP() {
 	</div>
 
 	<!-- LOAD TITLE (RaleighTransit.Info) -->
-	<div id="leftmenu" style="position:absolute; right:5px; top:48px; width:225px; padding:5px; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.80;filter:alpha(opacity=80);">
+	<div id="leftmenu" style="position:absolute; right:5px; top:48px; width:225px; padding:5px; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90);">
 		<form method="post" action="" style="margin:0;">
 
 	<div><input type="button" name="HideMenuID" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;" onClick="hideMenu(true)" /></div>
 
-		<span class="largetitle">Bicycling &amp; Walking Trip Planning Directions</span>
-		<span class="smallarial"><strong> | <a href="about.php">About</a></strong></span>
-       <br>
+		<span class="largetitle">Bicycling/Walking/Transit<br>Trip Planning Directions</span>
+		<span class="smallarial"><strong><br>
+    <a href="about.php">About this map</a></strong></span>
 
+        <div><img src="blackdot.gif" width="100%" height="1"></div>
 
-
-        <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
-
-		  <span class="smallarial"><strong>Background layers:</strong></span>
+		  <span class="smallarial"><strong>Transportation Layers:</strong></span>
           <br />
           <!-- Colors for Google BICYCLING Layer legend -->
           <div style="float:left; background-color:#004d00; width:15px;">&nbsp;</div>
           <div style="float:left; background-color:#00fe00; width:15px;">&nbsp;</div>
           <label>
               <input type="checkbox" name="bikeLayer" id="bikeLayer" value="" />
-                <span class="smallarial">Google Bicycle Layer</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths. Turn off this layer to see regular Google Maps." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths. Turn off this layer to see regular Google Maps." />-->
+                <span class="smallarial">Google Bicycle Layer</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." />
                   <br />
             <div style="clear:both"></div>
 
@@ -132,7 +130,7 @@ function isIgnoredIP() {
           <div style="float:left; background-color:#0d7bba; width:6px;">&nbsp;</div>
           <label>
               <input type="checkbox" name="transitLayer" id="transitLayer" value="" />
-                <span class="smallarial">Google Transit layer</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Transit Layer ..." /><br />
+                <span class="smallarial">Google Transit Layer</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Transit Layer shows rail transit lines." alt="Google's Transit Layer shows rail transit lines." /><br />
             <div style="clear:both"></div>
             
           <!-- Colors for Google TRAFFIC Layer legend -->
@@ -141,7 +139,7 @@ function isIgnoredIP() {
           <div style="float:left; background-color:#84ca50; width:10px;">&nbsp;</div>
           <label>
               <input type="checkbox" name="trafficLayer" id="trafficLayer" value="" />
-                <span class="smallarial">Google Realtime traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." alt="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." /><br />
+                <span class="smallarial">Google Realtime Traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time traffic conditions." alt="Google's Traffic Layer shows real-time traffic conditions." /><br />
             <div style="clear:both"></div>
 
 
@@ -175,7 +173,7 @@ function isIgnoredIP() {
   <div id="maximize_legend" style="position:absolute; left:71px; top:100px; border:0px; border-color:#000; border-style:solid; background-color:#FFF; width:16px; padding:0px; opacity:1.00;filter:alpha(opacity=100); visibility:hidden"><a href="javascript:minimize(false, 'legend');"><img src="images/icon_min_transparent_16_maximize.png" border="0"></a></div>
 
   <!-- LOAD DIRECTIONS DIV -->
-  <div id="directions_panel" style="position:absolute; left:70px; top:99px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.80;filter:alpha(opacity=80); visibility:hidden; ">
+  <div id="directions_panel" style="position:absolute; left:70px; top:99px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90); visibility:hidden; ">
     <!--
     [ <a href="javascript:clearDirections()">Clear directions</a> ]
     -->
