@@ -137,7 +137,7 @@ function isIgnoredIP() {
         <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 <div>
             <span class="smallarial"><strong>Zoom to:</strong></span>
-              <span class="smallarial"><a href="javascript:zoomToLevel('downtownraleigh')">Downtown</a> | <a href="javascript:zoomToLevel('raleigh')">Raleigh</a> | <a href="javascript:zoomToLevel('triangle')">Triangle</a></span>
+              <span class="smallarial"><a href="javascript:zoomToLevel('locationLevel1')">District</a> | <a href="javascript:zoomToLevel('locationLevel2')">DC Area</a> | <a href="javascript:zoomToLevel('locationLevel3')">Mid-Atlantic</a></span>
 	</form>
 	</div>
 	<!-- END of #controls -->
@@ -147,9 +147,9 @@ function isIgnoredIP() {
            <strong>Enter your destination address:</strong>
                 <input id="address"  type="text" value="" style="width:220px; font-size:10px" onKeyDown="keyPressed(event)" /><br>
                  <strong>City:</strong>
-                <input id="city"  type="text" value="Raleigh" style="width:88px; font-size:10px" onKeyDown="keyPressed(event)" />
+                <input id="city"  type="text" value="Washington" style="width:88px; font-size:10px" onKeyDown="keyPressed(event)" />
                  <strong>State:</strong>
-                <input id="state"  type="text" value="NC" style="width:58px; font-size:10px"  onkeydown="keyPressed(event)" />
+                <input id="state"  type="text" value="DC" style="width:58px; font-size:10px"  onkeydown="keyPressed(event)" />
                 <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find address" style="font-size:10px; font-weight:bold;" onClick="geocodeAddress()">
 		</span>
 		</div>

@@ -62,9 +62,8 @@ function initialize() {
 	
 	directionsDisplay.setPanel(document.getElementById("directions_panel"));
 	
-//	  var initialLocation = new google.maps.LatLng(35.80, -78.66);
-	// Changed this to match where the "Raleigh" link moves to:
-	var initialLocation = new google.maps.LatLng(35.83,-78.644); // Same as "Raleigh" link
+	// Centered on Petworth
+	var initialLocation = new google.maps.LatLng(38.939,-77.023);
   
  	var myOptions = {
 		  // Doesn't really matter what zoom level we use b/c it's going to zoom to the layers as they are added
@@ -204,21 +203,21 @@ function initialize() {
 	// END function initialize()
 
 function zoomToLevel(newLevel) {
-	if (newLevel == "triangle") {
-		// var downtownLocation = new google.maps.LatLng(35.875698,-78.833084);
-		var triangleLocation = new google.maps.LatLng(35.87,-78.77);
-		map.setCenter(triangleLocation);		
+	if (newLevel == 'locationLevel1') {
+		// District
+		var locationLevel1 = new google.maps.LatLng(38.905,-77.019);
+		map.setCenter(locationLevel1);		
+		map.setZoom(14);
+	} else if (newLevel == 'locationLevel2') {
+		// DC Metro
+		var locationLevel2 = new google.maps.LatLng(38.926,-77.062);
+		map.setCenter(locationLevel2);		
 		map.setZoom(11);		
-	} else if (newLevel == "raleigh") {
-		// var downtownLocation = new google.maps.LatLng(35.83034,-78.665199);
-		var raleighLocation = new google.maps.LatLng(35.83,-78.644);
-		map.setCenter(raleighLocation);		
-		map.setZoom(12);		
-	} else if (newLevel == "downtownraleigh") {
-		// var downtownLocation = new google.maps.LatLng(35.779177,-78.643398);
-		var downtownRaleighLocation = new google.maps.LatLng(35.78,-78.644);
-		map.setCenter(downtownRaleighLocation);		
-		map.setZoom(15);
+	} else if (newLevel == 'locationLevel3') {
+		// Mid-Atlantic
+		var locationLevel3 = new google.maps.LatLng(39.035,-77.259);
+		map.setCenter(locationLevel3);		
+		map.setZoom(8);		
 	}
 }
 
@@ -537,6 +536,7 @@ function geocodeCallback(results, status) {
 			
 			'<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
 //			addressToSearchFor + "<br><br>" +
+			// NOTE: Do not include the addressEntered field because no one would be traveling to their origin
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter your starting address:</strong><br>' +
 			'<input type="text" id="fromaddress" value="" style="width:300px; font-size:10px"><br>' +
@@ -550,7 +550,6 @@ function geocodeCallback(results, status) {
 		
 			// Go ahead and display the InfoWindow for the marker
 			searchedAddressInfoWindow.open(map, marker);
-		//}
 			// Update the destination address (main search box)
 			jQuery('input#address').val(addressEntered);
 			jQuery('input#city').val(cityEntered);
