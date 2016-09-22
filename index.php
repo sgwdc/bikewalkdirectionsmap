@@ -177,7 +177,7 @@ function isIgnoredIP() {
   <div id="maximize_legend" style="position:absolute; left:71px; top:100px; border:0px; border-color:#000; border-style:solid; background-color:#FFF; width:16px; padding:0px; opacity:1.00;filter:alpha(opacity=100); visibility:hidden"><a href="javascript:minimize(false, 'legend');"><img src="images/icon_min_transparent_16_maximize.png" border="0"></a></div>
 
   <!-- LOAD DIRECTIONS DIV -->
-  <div id="directions_panel" style="position:absolute; left:70px; top:99px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90); visibility:hidden; ">
+  <div id="directions_panel" style="position:absolute; left:70px; top:5px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90); visibility:hidden; ">
     <!--
     [ <a href="javascript:clearDirections()">Clear directions</a> ]
     -->
