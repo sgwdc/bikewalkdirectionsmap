@@ -530,15 +530,15 @@ function geocodeCallback(results, status) {
 			'<form action="#" onsubmit="findDirectionsPressed(\'' + firstAddress.formatted_address + '\', \'' + this + '\'); return false;">'+
 //			'<form action="#" onsubmit="return false;">'+
 			
-			'<strong>Get walk/bike/drive directions to:</strong><br>'+
+			'<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
 //			addressToSearchFor + "<br><br>" +
 			firstAddress.formatted_address + "<br><br>" +
-			'<strong>Enter starting address:</strong><br>' +
-			'<input type="text" id="fromaddress" value="" style="width:200px; font-size:10px"><br>' +
-			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:105px; font-size:10px" />' +
-			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:25px; font-size:10px" />' +
+			'<strong>Enter your starting address:</strong><br>' +
+			'<input type="text" id="fromaddress" value="" style="width:300px; font-size:10px"><br>' +
+			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:168px; font-size:10px" />' +
+			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:55px; font-size:10px" />' +
 
-			'<br><input type="submit" value="Get directions">' +
+			'<br><input type="submit" value="Show bicycling & walking directions">' +
 
 //			'<a href="javascript:clearDirections()"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>' +
 			'</form>');

@@ -18,7 +18,7 @@ function isIgnoredIP() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bike/Ped Directions Map</title>
+    <title>Bicycling &amp; Walking Trip Planning Directions</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -105,7 +105,7 @@ function isIgnoredIP() {
 
 	<div><input type="button" name="HideMenuID" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;" onClick="hideMenu(true)" /></div>
 
-		<span class="largetitle">Bike/Ped Directions</span>
+		<span class="largetitle">Bicycling &amp; Walking Trip Planning Directions</span>
 		<span class="smallarial"><strong> | <a href="about.php">About</a></strong></span>
        <br>
 
@@ -144,13 +144,13 @@ function isIgnoredIP() {
 
 	<div>
 	    <span class="smallarial">
-           <strong>Find address:</strong>
-                <input id="address"  type="text" value="" style="width:125px; font-size:10px" onKeyDown="keyPressed(event)" /><br>
+           <strong>Enter your destination address:</strong>
+                <input id="address"  type="text" value="" style="width:220px; font-size:10px" onKeyDown="keyPressed(event)" /><br>
                  <strong>City:</strong>
-                <input id="city"  type="text" value="Raleigh" style="width:70px; font-size:10px" onKeyDown="keyPressed(event)" />
+                <input id="city"  type="text" value="Raleigh" style="width:88px; font-size:10px" onKeyDown="keyPressed(event)" />
                  <strong>State:</strong>
-                <input id="state"  type="text" value="NC" style="width:25px; font-size:10px"  onkeydown="keyPressed(event)" />
-                <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find" style="width:40px; font-size:10px; font-weight:bold;" onClick="geocodeAddress()">
+                <input id="state"  type="text" value="NC" style="width:58px; font-size:10px"  onkeydown="keyPressed(event)" />
+                <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find address" style="font-size:10px; font-weight:bold;" onClick="geocodeAddress()">
 		</span>
 		</div>
 	</div>
