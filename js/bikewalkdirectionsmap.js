@@ -237,10 +237,12 @@ function initialize() {
 	  });
 	*/  
 
-	  // NOTE THAT THIS IS GEOCODING EVERY TIME THE USER CLICKS, INCLUDING WHEN ZOOMING IN:
 	  //Add listener to the map for reverse geocoding
 	  google.maps.event.addListener(map, 'click', function(event) {
-	  	geocodeLatLng(event);
+	  	// Only geocode if the user isn't already looking at directions
+	  	if (jQuery('div#directions_panel').css('visibility') == "hidden") {
+		  	geocodeLatLng(event);
+	  	}
 	  });
 
 	  //Add listener to marker for reopening the InfoWindow to see the address and get directions
