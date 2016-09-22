@@ -443,11 +443,14 @@ function clearDirections() {
 	}		
 }
 
+// This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
 function clearAddressMarker() {
 	marker.setMap(null);
+	/* If this function ends up getting used, replace these jQuery to display dynamic content:
 	document.getElementById('address').value='';
 	document.getElementById('city').value='Raleigh';
 	document.getElementById('state').value='NC';
+	*/
 	document.getElementById('address').blur();
 	document.getElementById('city').blur();
 	document.getElementById('state').blur();
@@ -504,6 +507,8 @@ function geocodeCallback(results, status) {
 		*/
 		/* This does not seem to be necessary -SGW
 		//directionsDisplay.setMap(null);
+		*/
+		/* This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
 		//clearAddressMarker();
 		*/
 		clearDirections();
