@@ -17,6 +17,7 @@ var fromAddressText;
 var bikeLayer;
 var trafficLayer;
 var searchedAddressInfoWindow;
+var routesObject;
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -76,6 +77,17 @@ function initialize() {
 	directionsService = new google.maps.DirectionsService();
 
 	directionsDisplay = new google.maps.DirectionsRenderer();
+
+	// Define event handler for when the user selects a different route choice
+	google.maps.event.addListener(directionsDisplay, 'routeindex_changed', function() {
+		// Get the index of the newly selected route
+  		var routeIndex = directionsDisplay.getRouteIndex();
+  		// Ignore the initial events when the routes are first received
+  		if (typeof routesObject != "undefined") {
+			// Add markers for each step of the newly selected route
+  			showSteps(routesObject[routeIndex])
+  		}
+	});
 	
 	directionsDisplay.setPanel(document.getElementById("directions_panel"));
 	
@@ -252,11 +264,10 @@ function findDirectionsPressed(toAddressText) {
 }
 	
 function getDirections(tripMethod) {
-	// First, clear out any existing markerArray
-	// from previous calculations.
-	for (i = 0; i < markerArray.length; i++) {
-		markerArray[i].setMap(null);
-	}		
+	/* This does not seem to be necessary
+	// Remove any existing markers
+	removeAllMarkers();
+	*/
 
 	if (tripMethod == "walk") {
 		travelMode = google.maps.DirectionsTravelMode.WALKING;
@@ -303,9 +314,11 @@ function getDirections(tripMethod) {
 	
 			directionsDisplay.setDirections(result);
 
-			// Add markers for each step of the route
-			showSteps(result);
-			
+			// Save all routes as a global variable so we can udpate the markers if the user selects a different route choice
+			root.routesObject = result.routes;
+
+			// Add markers for each step of the first route
+			showSteps(result.routes[0]);
 		} else {
 			alert("There was an error: " + status);
 		}
@@ -323,6 +336,13 @@ The DirectionsStatus may return the following values:
 * UNKNOWN_ERROR indicates a directions request could not be processed due to a server error. The request may succeed if you try again.
 		*/
 	});
+}
+
+// Remove any existing markers
+function removeAllMarkers() {
+	for (i = 0; i < markerArray.length; i++) {
+		markerArray[i].setMap(null);
+	}		
 }
 
 function setTransportModeIcon(transportMode) {
@@ -351,20 +371,23 @@ function setTransportModeIcon(transportMode) {
 	}
 }
 
-// Internal function
-function showSteps(directionResult) {
-  // For each step, place a marker, and add the text to the marker's
-  // info window. Also attach the marker to an array so we
-  // can keep track of it and remove it when calculating new
-  // routes.
-  var myRoute = directionResult.routes[0].legs[0];
+// Called by directionsService.route(), and by the "routeindex_changed" event handler
+// For each step, place a marker, and add the text to the marker's InfoWindow. Also attach the marker to an array so we can keep track of it and remove it when calculating new routes
+function showSteps(selectedRoute) {
 
-  for (var i = 0; i < myRoute.steps.length; i++) {
+  // It is safe to assume there is only one leg of this trip
+  var steps = selectedRoute.legs[0].steps;
+
+  // Remove any existing markers
+  removeAllMarkers();
+
+  // Add markers for the selected route
+  for (var i = 0; i < steps.length; i++) {
 	  var marker = new google.maps.Marker({
-		position: myRoute.steps[i].start_point, 
+		position: steps[i].start_point, 
 		map: map
 	  });
-	  attachInstructionText(marker, myRoute.steps[i].instructions);
+	  attachInstructionText(marker, steps[i].instructions);
 	  markerArray[i] = marker;
   }
 }
@@ -383,11 +406,8 @@ function clearDirections() {
 	directionsDisplay.setMap(null);
 //		directionsDisplay.setDirections(null);
 	
-	// First, clear out any existing markerArray
-	// from previous calculations.
-	for (i = 0; i < markerArray.length; i++) {
-		markerArray[i].setMap(null);
-	}		
+	// Remove any existing markers
+	removeAllMarkers();
 }
 
 // This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
