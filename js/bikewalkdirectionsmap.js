@@ -518,9 +518,12 @@ function geocodeCallback(results, status) {
 		// Set the marker's rollover text
 		marker.setTitle("Click for bike/walk/drive directions");
 
-		// TODO: Split the address into separate strings and update the 3 input fields here
-
-		$('#address').val(firstAddress.formatted_address);
+		// Split the address string into separate strings
+		addressPieces = firstAddress.formatted_address.split(', ');
+		// Use the user input fields for the destination from the geocoding to populate the starting address input fields below:
+		addressEntered = addressPieces[0];
+		cityEntered = addressPieces[1];
+		stateEntered = addressPieces[2];
 
 		// Populate the InfoWindow content
 		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
@@ -544,6 +547,10 @@ function geocodeCallback(results, status) {
 			// Go ahead and display the InfoWindow for the marker
 			searchedAddressInfoWindow.open(map, marker);
 		//}
+			// Update the destination address (main search box)
+			jQuery('input#address').val(addressEntered);
+			jQuery('input#city').val(cityEntered);
+			jQuery('input#state').val(stateEntered);
 	} else {
 		alert("Geocode was not successful for the following reason: " + status);
  	}
