@@ -95,7 +95,6 @@ function initialize() {
 	var initialLocation = new google.maps.LatLng(38.939,-77.023);
   
  	var myOptions = {
-		  // Doesn't really matter what zoom level we use b/c it's going to zoom to the layers as they are added
 		zoom: 12,
 		center: initialLocation,
 	//		mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -483,12 +482,13 @@ function geocodeCallback(results, status) {
 		var firstAddress = results[0];
 		// Center the map on the geocoded address
 		map.setCenter(firstAddress.geometry.location);
-		// Zoom in on the geocoded address
-		map.setZoom(13);
+		// Zoom in by two levels dynamically
+		map.setZoom(map.getZoom() + 2);
+		// Add a marker to the geocoded location
 		marker.setMap(map);
 		marker.setPosition(firstAddress.geometry.location);
 		// Set the marker's rollover text
-		marker.setTitle("Click for bike/walk/drive directions");
+		marker.setTitle("Click for bike/walk/transit/driving directions");
 
 		// Split the address string into separate strings
 		addressPieces = firstAddress.formatted_address.split(', ');
