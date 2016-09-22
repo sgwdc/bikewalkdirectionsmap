@@ -11,7 +11,9 @@ var marker;
 var directionsDisplay;
 var directionsService;
 var markerArray = [];	
-var stepDisplay;
+/* Not currently implemented
+var stepDisplayInfoWindow;
+*/
 var fromAddressText;
 // be sure to add new layers here:
 var bikeLayer;
@@ -91,6 +93,13 @@ function initialize() {
 		size: new google.maps.Size(50,50),
 		maxWidth: 500
 	});
+	/* Not currently implemented
+	stepDisplayInfoWindow = new google.maps.InfoWindow({
+		content: "",
+		size: new google.maps.Size(50,50),
+		maxWidth: 500
+	});
+	*/
 
 	// Reset the form
 	document.forms[0].bikeLayer.checked = true;
@@ -356,8 +365,7 @@ function setTransportModeIcon(transportMode) {
 // Called by directionsService.route(), and by the "routeindex_changed" event handler
 // For each step, place a marker, and add the text to the marker's InfoWindow. Also attach the marker to an array so we can keep track of it and remove it when calculating new routes
 function showSteps(selectedRoute) {
-
-  // It is safe to assume there is only one leg of this trip
+  // Get the steps for the first leg of this trip (It is safe to assume there is only one)
   var steps = selectedRoute.legs[0].steps;
 
   // Remove any existing markers
@@ -369,25 +377,29 @@ function showSteps(selectedRoute) {
 		position: steps[i].start_point, 
 		map: map
 	  });
+	  /* Not currently implemented
 	  attachInstructionText(marker, steps[i].instructions);
+	  */
 	  markerArray[i] = marker;
   }
 }
-// Internal function
+
+/* Not currently implemented: To show a step's instructions when the user clicks a marker, we'll need to close any InfoWindows opened when the user clicked on an instruction in the directions
+// Event listener for when the user clicks on a marker
 function attachInstructionText(marker, text) {
   google.maps.event.addListener(marker, 'click', function() {
-	stepDisplay.setContent(text);
-	stepDisplay.open(map, marker);
+  	// Display the instructions for that step
+	stepDisplayInfoWindow.setContent(text);
+	stepDisplayInfoWindow.open(map, marker);
   });
 }
+*/
 
+// Remove the directions
 function clearDirections() {
 	document.getElementById("directions_panel").style.visibility = "hidden";
 	document.getElementById("leftmenu").style.visibility = "visible";
-//		directionsDisplay.setDirections(null);
 	directionsDisplay.setMap(null);
-//		directionsDisplay.setDirections(null);
-	
 	// Remove any existing markers
 	removeAllMarkers();
 }
@@ -395,7 +407,7 @@ function clearDirections() {
 // This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
 function clearAddressMarker() {
 	marker.setMap(null);
-	/* If this function ends up getting used, replace these jQuery to display dynamic content:
+	/* If this function ends up getting used, replace these with jQuery to display dynamic content:
 	document.getElementById('address').value='';
 	document.getElementById('city').value='Raleigh';
 	document.getElementById('state').value='NC';
