@@ -102,13 +102,12 @@ function initialize() {
 		// title: "Steve Test"
 	});
 
-	// Display the Google Maps Bike Layer
+	// Load and display the Google Maps BICYCLING Layer
 	bikeLayer = new google.maps.BicyclingLayer();
 	bikeLayer.setMap(map);
 
-	// Display the Google Maps TRAFFIC Layer
+	// Load (but don't display) the Google Maps TRAFFIC Layer
 	trafficLayer = new google.maps.TrafficLayer();
-	trafficLayer.setMap(map);
 
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();
