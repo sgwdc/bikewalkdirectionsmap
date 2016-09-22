@@ -150,7 +150,7 @@ function isIgnoredIP() {
                 <input id="city"  type="text" value="Raleigh" style="width:70px; font-size:10px" onKeyDown="keyPressed(event)" />
                  <strong>State:</strong>
                 <input id="state"  type="text" value="NC" style="width:25px; font-size:10px"  onkeydown="keyPressed(event)" />
-                <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find" style="width:40px; font-size:10px; font-weight:bold;" onClick="codeAddress()">
+                <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find" style="width:40px; font-size:10px; font-weight:bold;" onClick="geocodeAddress()">
 		</span>
 		</div>
 	</div>

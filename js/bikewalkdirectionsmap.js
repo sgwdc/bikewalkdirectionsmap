@@ -181,41 +181,8 @@ function initialize() {
 	  // NOTE THAT THIS IS GEOCODING EVERY TIME THE USER CLICKS, INCLUDING WHEN ZOOMING IN:
 	  //Add listener to the map for reverse geocoding
 	  google.maps.event.addListener(map, 'click', function(event) {
-		//alert("event.latLng= " + event.latLng);						   
-		geocoder.geocode({'latLng': event.latLng}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				if (results[0]) {
-					$('#address').val(results[0].formatted_address);
-					$('#latitude').val(event.latLng.lat());
-					$('#longitude').val(event.latLng.lng());
-					marker.setPosition(event.latLng);
-
-					/* This is duplicative, but here as an experiment -SGW */
-					searchedAddressInfoWindow.setContent('<span class="smallarial">' +
-						'<form action="#" onsubmit="findDirectionsPressed(\'' + results[0].formatted_address + '\', \'' + this + '\'); return false;">'+
-			//			'<form action="#" onsubmit="return false;">'+
-						
-						'<strong>Get walk/bike/drive directions to:</strong><br>'+
-			//			addressToSearchFor + "<br><br>" +
-						results[0].formatted_address + "<br><br>" +
-						'<strong>Enter starting address:</strong><br>' +
-						'<input type="text" id="fromaddress" value="" style="width:200px; font-size:10px"><br>' +
-						'<strong>City:</strong> <input id="fromcity"  type="text" value="Raleigh" style="width:105px; font-size:10px" />' +
-						'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="NC" style="width:25px; font-size:10px" />' +
-						//                <input type="button" value="Find" onClick="codeAddress()">
-
-						'<br><input type="submit" value="Get directions">' +
-
-			//			'<a href="javascript:clearDirections()"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>' +
-						'</form>');
-					
-						// Go ahead and display the InfoWindow for the marker
-						searchedAddressInfoWindow.open(map, marker);
-				}
-		 	}
-		}); // END geocoder.geocode()
+	  	geocodeLatLng(event);
 	  });
-
 
 	  //Add listener to marker for reopening the InfoWindow to see the address and get directions
 	  google.maps.event.addListener(marker, 'click', function(event) {
@@ -508,53 +475,78 @@ function keyPressed(event) {
 	else return true;		
 }
 
-function codeAddress() {
-//    var address = document.getElementById("address").value;
+// Called when the user enters an address
+function geocodeAddress() {
+	// Concatenate the address fields into one string
 	var addressToSearchFor = document.getElementById("address").value + ", " + document.getElementById("city").value + ", " + document.getElementById("state").value;
 
+	// Send the user-entered address to the Google geocoder
 	geocoder.geocode( { 'address': addressToSearchFor}, function(results, status) {
-	var firstAddress = results[0];
-			/*													 
-	debugText = "";
-	for (oneItem in results[0]) {
-		debugText += oneItem + "= " + results[0][oneItem] + "\n";	
-	}
-	 alert("results= " + debugText);
-	 */
-	  if (status == google.maps.GeocoderStatus.OK) {
-		  if (firstAddress.formatted_address == "Raleigh, NC, USA") {
-			  alert("Please enter a valid address, and click 'Enter'");
-			  return;
-		  }
-		  
-//			directionsDisplay.setMap(null);
-		//clearDirections();
-		//clearAddressMarker();
-		  
-		map.setCenter(firstAddress.geometry.location);
-		map.setZoom(16);
-		/*
-		var marker = new google.maps.Marker({
-			map: map, 
-			position: results[0].geometry.location
-		});
+		// Pass the results to the callback function (shared with geocoding by map click)
+		geocodeCallback(results, status);
+	});
+}
+
+// Called when the user clicks on the map
+function geocodeLatLng(event) {
+  	// Send the latitude & longitude of the user click to the Google geocoder
+	geocoder.geocode({'latLng': event.latLng}, function(results, status) {
+		// Pass the results to the callback function (shared with geocoding by user-entered address)
+		geocodeCallback(results, status);
+	});
+}
+
+// Called by geocodeAddress() and the event listener for user clicks on the mouse
+function geocodeCallback(results, status) {
+	if (status == google.maps.GeocoderStatus.OK) {
+		/* Would there ever be a case of zero results?
+		if (results[0]) {
 		*/
+		/* This does not seem to be necessary -SGW
+		//directionsDisplay.setMap(null);
+		//clearAddressMarker();
+		*/
+		clearDirections();
+
+		var firstAddress = results[0];
+		// Center the map on the geocoded address
+		map.setCenter(firstAddress.geometry.location);
+		// Zoom in on the geocoded address
+		map.setZoom(16);
 		marker.setMap(map);
 		marker.setPosition(firstAddress.geometry.location);
-		marker.setTitle("Click for directions");
+		// Set the marker's rollover text
+		marker.setTitle("Click for bike/walk/drive directions");
+
+		// TODO: Split the address into separate strings and update the 3 input fields here
+
+		$('#address').val(firstAddress.formatted_address);
+
+		// Populate the InfoWindow content
+		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
+			'<form action="#" onsubmit="findDirectionsPressed(\'' + firstAddress.formatted_address + '\', \'' + this + '\'); return false;">'+
+//			'<form action="#" onsubmit="return false;">'+
+			
+			'<strong>Get walk/bike/drive directions to:</strong><br>'+
+//			addressToSearchFor + "<br><br>" +
+			firstAddress.formatted_address + "<br><br>" +
+			'<strong>Enter starting address:</strong><br>' +
+			'<input type="text" id="fromaddress" value="" style="width:200px; font-size:10px"><br>' +
+			'<strong>City:</strong> <input id="fromcity"  type="text" value="Raleigh" style="width:105px; font-size:10px" />' +
+			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="NC" style="width:25px; font-size:10px" />' +
+			//                <input type="button" value="Find" onClick="codeAddress()">
+
+			'<br><input type="submit" value="Get directions">' +
+
+//			'<a href="javascript:clearDirections()"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>' +
+			'</form>');
 		
-		// Split the formatted address into pieces
-		var addressPieces = firstAddress.formatted_address.split(', ');
-		var twoLineAddress = addressPieces[0] + '<br>' + addressPieces[1] + ', ' + addressPieces[2];
-		searchedAddressInfoWindow.setContent('<span class="smallarial">' + '<strong>Found address:</strong><br>' + twoLineAddress + '</span>');
-	
-		// Go ahead and display the InfoWindow for the marker
-		searchedAddressInfoWindow.open(map, marker);
-		
-	  } else {
+			// Go ahead and display the InfoWindow for the marker
+			searchedAddressInfoWindow.open(map, marker);
+		//}
+	} else {
 		alert("Geocode was not successful for the following reason: " + status);
-	  }
-	});
+ 	}
 }
 
 // To minimize/maximize a DIV
