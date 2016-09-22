@@ -18,16 +18,15 @@ function isIgnoredIP() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>About | Raleigh BPAC Planning Map</title>
+    <title>Interactive Map: Bike/Walk/Transit Trip Directions</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 </head>
 <body>
-<h3>Raleigh BPAC Planning Map - About</h3>
+<h3>Interactive Map: Bike/Walk/Transit Trip Directions</h3>
 
-<p>This interactive map shows current, future, and long-term planned bicycle facilities in Raleigh, North Carolina. This was designed to help the City of Raleigh's Bicycle &amp; Pedestrian Advisory Commission visualize current and proposed facilities to help prioritize funding.Facility types included are bike lanes, sharrows (shared lane markings), wide outside lanes, and miscellaneous.</p>
-<p>Some map layers were converted from ArcGIS shapefiles, and others were hand drawn.</p>
-<p>The background is the Raleigh City Council districts on top of the Google Bicycle Layer, which shows greenways and other current bike facilities. The Google Bicycle layer contains mostly greenways, and some on-street facilities.</p>
+<p>This web application uses the Google Maps API and jQuery to provide users with multiple routes for bicycling, walking or riding transit between two locations.</p>
+<p>A location can be geocoded on the map by typing in an address, city and state. Alternatively, an address, city and state can be reverse geocoded by simply clicking anywhere on the map. Users can also display Google's Bicycle, Transit and Traffic layers in the background.</p>
 <p>Please <a href="mailto:swaters@livingstreets.com" target="_blank">contact Steven Greenwaters</a> with any questions.</p>
 <p><a href="./">Return to interactive map</a>.</p>
 <p>&nbsp;</p>
