@@ -22,23 +22,40 @@ var searchedAddressInfoWindow;
 
 // Run once jQuery has finished loading
 jQuery(document).ready(function() {
-	// Define event handler for Google Bicycle Layer checkbox
+	// Define event handler for Google BICYCLING Layer checkbox
 	jQuery('form input#bikeLayer:checkbox').on('change', function(event) {
 		if (jQuery(this).is(':checked')) {
 			bikeLayer.setMap(map);
+			transitLayer.setMap(null);
 			trafficLayer.setMap(null);
+			jQuery(jQuery('form input#transitLayer:checkbox')).prop('checked', false);
 			jQuery(jQuery('form input#trafficLayer:checkbox')).prop('checked', false);
 		} else{
 			bikeLayer.setMap(null);
 		}
 	});
 
-	// Define event handler for Google Traffic Layer checkbox
+	// Define event handler for Google TRANSIT Layer checkbox
+	jQuery('form input#transitLayer:checkbox').on('change', function(event) {
+		if (jQuery(this).is(':checked')) {
+			transitLayer.setMap(map);
+			bikeLayer.setMap(null);
+			trafficLayer.setMap(null);
+			jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('form input#trafficLayer:checkbox')).prop('checked', false);
+		} else{
+			transitLayer.setMap(null);
+		}
+	});
+
+	// Define event handler for Google TRAFFIC Layer checkbox
 	jQuery('form input#trafficLayer:checkbox').on('change', function(event) {
 		if (jQuery(this).is(':checked')) {
 			trafficLayer.setMap(map);
 			bikeLayer.setMap(null);
+			transitLayer.setMap(null);
 			jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('form input#transitLayer:checkbox')).prop('checked', false);
 		} else{
 			trafficLayer.setMap(null);
 		}
@@ -108,6 +125,9 @@ function initialize() {
 
 	// Load (but don't display) the Google Maps TRAFFIC Layer
 	trafficLayer = new google.maps.TrafficLayer();
+
+	// Load (but don't display) the Google Maps TRANSIT Layer
+	transitLayer = new google.maps.TransitLayer();
 
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();

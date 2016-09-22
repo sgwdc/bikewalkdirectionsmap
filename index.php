@@ -115,7 +115,7 @@ function isIgnoredIP() {
 
 		  <span class="smallarial"><strong>Background layers:</strong></span>
           <br />
-          <!-- Colors for Google Bicycle Layer legend -->
+          <!-- Colors for Google BICYCLING Layer legend -->
           <div style="float:left; background-color:#004d00; width:15px;">&nbsp;</div>
           <div style="float:left; background-color:#00fe00; width:15px;">&nbsp;</div>
           <label>
@@ -123,14 +123,25 @@ function isIgnoredIP() {
                 <span class="smallarial">Google Bicycle Layer</span></label><!-- <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths. Turn off this layer to see regular Google Maps." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths. Turn off this layer to see regular Google Maps." />-->
                   <br />
             <div style="clear:both"></div>
+
+          <!-- Colors for Google TRANSIT Layer legend -->
+          <div style="float:left; background-color:#ea4434; width:6px;">&nbsp;</div>
+          <div style="float:left; background-color:#f38b38; width:6px;">&nbsp;</div>
+          <div style="float:left; background-color:#f3d810; width:6px;">&nbsp;</div>
+          <div style="float:left; background-color:#009b57; width:6px;">&nbsp;</div>
+          <div style="float:left; background-color:#0d7bba; width:6px;">&nbsp;</div>
+          <label>
+              <input type="checkbox" name="transitLayer" id="transitLayer" value="" />
+                <span class="smallarial">Google Transit layer</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Transit Layer ..." /><br />
+            <div style="clear:both"></div>
             
-          <!-- Colors for Google Traffic Layer legend -->
-          <div style="float:left; background-color:#3fae14; width:10px;">&nbsp;</div>
-          <div style="float:left; background-color:#f9ca22; width:10px;">&nbsp;</div>
-          <div style="float:left; background-color:#90040d; width:10px;">&nbsp;</div>
+          <!-- Colors for Google TRAFFIC Layer legend -->
+          <div style="float:left; background-color:#e60000; width:10px;">&nbsp;</div>
+          <div style="float:left; background-color:#f07d02; width:10px;">&nbsp;</div>
+          <div style="float:left; background-color:#84ca50; width:10px;">&nbsp;</div>
           <label>
               <input type="checkbox" name="trafficLayer" id="trafficLayer" value="" />
-                <span class="smallarial">Realtime traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." alt="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." /><br />
+                <span class="smallarial">Google Realtime traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." alt="Google's Traffic Layer shows real-time (car) traffic conditions. Turn off this layer to see regular Google Maps." /><br />
             <div style="clear:both"></div>
 
 
