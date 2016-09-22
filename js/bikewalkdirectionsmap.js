@@ -351,63 +351,6 @@ function setTransportModeIcon(transportMode) {
 	}
 }
 
-// COPY MOST OF THIS TO getDirections2() above after it works
-function steve(directionsType) {
-	document.getElementById("directions_panel").style.visibility = "visible";
-	document.getElementById("leftmenu").style.visibility = "hidden";
-
-	// First, clear out any existing markerArray
-	// from previous calculations.
-	for (i = 0; i < markerArray.length; i++) {
-		markerArray[i].setMap(null);
-	}		
-
-	MM_swapImage('carIcon','','images/car_off.png',0);
-	MM_swapImage('bikeIcon','','images/car_off.png',0);
-	
-	// Calls function above to highlight the right transport mode
-	setTransportModeIcon(directionsType);
-
-	if (directionsType == "walk") {
-//			travelMode: google.maps.DirectionsTravelMode.BICYCLING,
-		var travelModeToUse = google.maps.DirectionsTravelMode.WALKING;
-//			MM_swapImage('pedIcon','','images/ped_on.png',0);
-	} else if (directionsType == "bike") {
-		var travelModeToUse = google.maps.DirectionsTravelMode.BICYCLING;
-//			MM_swapImage('bikeIcon','','images/bike_on.png',0);
-	} else if (directionsType == "drive") {
-		var travelModeToUse = google.maps.DirectionsTravelMode.DRIVING;
-//			MM_swapImage('carIcon','','images/car_on.png',0);
-	} else {
-		alert("WARNING: directionsType= " + directionsType);
-	}
-	
-	// Attach directions to the map now that we're actually going to use it
-	directionsDisplay.setMap(map);
-	
-	root.fromAddressText = "804 W Morgan St, Raleigh, NC";
-	root.toAddressText = "5224 Troutman Ln, Raleigh, NC";
-	
-
-	var request = {
-//			origin: "804 W Morgan St, Raleigh, NC", 
-//			destination: "5224 Troutman Ln, Raleigh, NC",
-		origin: root.fromAddressText, 
-		destination: root.toAddressText,
-		travelMode: travelModeToUse,
-		provideRouteAlternatives: true
-	};
-	directionsService.route(request, function(result, status) {
-		if (status == google.maps.DirectionsStatus.OK) {
-//			  directionsDisplay.setDirections(result);
-
-//				var warnings = document.getElementById("warnings_panel");
-//				warnings.innerHTML = "" + result.routes[0].warnings + "";
-			directionsDisplay.setDirections(result);
-			showSteps(result);
-		}
-	});
-}
 // Internal function
 function showSteps(directionResult) {
   // For each step, place a marker, and add the text to the marker's
