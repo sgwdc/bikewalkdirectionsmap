@@ -264,6 +264,8 @@ function getDirections(tripMethod) {
 		travelMode = google.maps.DirectionsTravelMode.BICYCLING;
 	} else if (tripMethod == "drive") {
 		travelMode = google.maps.DirectionsTravelMode.DRIVING;
+	} else if (tripMethod == "transit") {
+		travelMode = google.maps.DirectionsTravelMode.TRANSIT;
 	} else {
 		alert("WARNING: tripMethod was not passed to getDirections()"); 
 //			travelMode = google.maps.DirectionsTravelMode.DRIVING;
@@ -340,6 +342,12 @@ function setTransportModeIcon(transportMode) {
 		MM_swapImage('carIcon','','images/car_on.png',0);
 	} else {
 		MM_swapImage('carIcon','','images/car_off.png',0);
+	}
+
+	if (transportMode == "transit") {
+		MM_swapImage('transitIcon','','images/transit_on.png',0);
+	} else {
+		MM_swapImage('transitIcon','','images/transit_off.png',0);
 	}
 }
 

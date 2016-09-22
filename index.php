@@ -182,6 +182,7 @@ function isIgnoredIP() {
     
 <a href="javascript:getDirections('walk')"><img src="images/ped_off.png" alt="Walking directions" name="pedIcon" width="39" height="25" border="0" id="pedIcon" /></a>
 <a href="javascript:getDirections('bike')"><img src="images/bike_on.png" alt="Bicycling directions" name="bikeIcon" width="39" height="25" border="0" id="bikeIcon" /></a>
+<a href="javascript:getDirections('transit')"><img src="images/transit_off.png" alt="Transit directions" name="transitIcon" width="39" height="25" border="0" id="transitIcon" /></a>
 <a href="javascript:getDirections('drive')"><img src="images/car_off.png" alt="Driving directions" name="carIcon" width="39" height="25" border="0" id="carIcon" /></a>
 <a href="javascript:clearDirections();"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>
   </div>
