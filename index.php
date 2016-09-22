@@ -146,7 +146,11 @@ function isIgnoredIP() {
         <div style="padding:2px 0px 2px 0px;"><img src="blackdot.gif" width="100%" height="1"></div>
 <div>
             <span class="smallarial"><strong>Zoom to:</strong></span>
-              <span class="smallarial"><a href="javascript:zoomToLevel('locationLevel1')">District</a> | <a href="javascript:zoomToLevel('locationLevel2')">DC Area</a> | <a href="javascript:zoomToLevel('locationLevel3')">Mid-Atlantic</a></span>
+              <span class="smallarial">
+                <a id="locationLevel1" class="zoomLevels" href="javascript:void(0);">District</a> |
+                <a id="locationLevel2" class="zoomLevels" href="javascript:void(0);">DC Area</a> |
+                <a id="locationLevel3" class="zoomLevels" href="javascript:void(0);">Mid-Atlantic</a>
+              </span>
 	</form>
 	</div>
 	<!-- END of #controls -->

@@ -61,6 +61,27 @@ jQuery(document).ready(function() {
 			trafficLayer.setMap(null);
 		}
 	});
+
+	// Define event handler for the zoom level links in the menu
+	jQuery('div#leftmenu .zoomLevels').on('click', function(event) {
+		var newLevel = $(this).attr('id');
+		if (newLevel == 'locationLevel1') {
+			// District
+			var locationLevel1 = new google.maps.LatLng(38.905,-77.019);
+			map.setCenter(locationLevel1);		
+			map.setZoom(14);
+		} else if (newLevel == 'locationLevel2') {
+			// DC Metro
+			var locationLevel2 = new google.maps.LatLng(38.926,-77.062);
+			map.setCenter(locationLevel2);		
+			map.setZoom(11);		
+		} else if (newLevel == 'locationLevel3') {
+			// Mid-Atlantic
+			var locationLevel3 = new google.maps.LatLng(39.035,-77.259);
+			map.setCenter(locationLevel3);		
+			map.setZoom(8);		
+		}
+	});
 });
 
 // This is called by the jQuery function above
@@ -232,42 +253,16 @@ function initialize() {
 	}
 	// END function initialize()
 
-function zoomToLevel(newLevel) {
-	if (newLevel == 'locationLevel1') {
-		// District
-		var locationLevel1 = new google.maps.LatLng(38.905,-77.019);
-		map.setCenter(locationLevel1);		
-		map.setZoom(14);
-	} else if (newLevel == 'locationLevel2') {
-		// DC Metro
-		var locationLevel2 = new google.maps.LatLng(38.926,-77.062);
-		map.setCenter(locationLevel2);		
-		map.setZoom(11);		
-	} else if (newLevel == 'locationLevel3') {
-		// Mid-Atlantic
-		var locationLevel3 = new google.maps.LatLng(39.035,-77.259);
-		map.setCenter(locationLevel3);		
-		map.setZoom(8);		
-	}
-}
-
 function findDirectionsPressed(toAddressText) {
-	// make sure this variable is available to getDirections()
-//		root.fromAddressText = document.getElementById("startaddress").value;
+	// Make sure this variable is available to getDirections()
 	root.fromAddressText = document.getElementById("fromaddress").value + ", " + document.getElementById("fromcity").value + ", " + document.getElementById("fromstate").value;
 	root.toAddressText = toAddressText;
 	searchedAddressInfoWindow.close();
-	// ONly handle bike directions for now
+	// Start with bike directions
 	getDirections("bike");
-//		getDirections("drive");
 }
 	
 function getDirections(tripMethod) {
-	/* This does not seem to be necessary
-	// Remove any existing markers
-	removeAllMarkers();
-	*/
-
 	if (tripMethod == "walk") {
 		travelMode = google.maps.DirectionsTravelMode.WALKING;
 	} else if (tripMethod == "bike") {
@@ -284,26 +279,14 @@ function getDirections(tripMethod) {
 	// Calls function above to highlight the right transport mode
 	setTransportModeIcon(tripMethod);
 	
-	
-//		var start = document.getElementById("start").value;
-//		var end = document.getElementById("end").value;
 	var request = {
-//			origin: fromAddressText, 
-//			destination: toAddressText,
 		origin: root.fromAddressText, 
 		destination: root.toAddressText,
-//			travelMode: google.maps.DirectionsTravelMode.DRIVING,
-//			travelMode: google.maps.DirectionsTravelMode.BICYCLING,
-//			travelMode: google.maps.DirectionsTravelMode.WALKING,
 		travelMode: travelMode,
 		provideRouteAlternatives: true
 	};
 	directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
-			
-			
-	//		directions.visibility = "visible";
-	//		document.getElementById("directions").style.visibility = "visible";
 			document.getElementById("directions_panel").style.visibility = "visible";
 			document.getElementById("leftmenu").style.visibility = "hidden";
 			
