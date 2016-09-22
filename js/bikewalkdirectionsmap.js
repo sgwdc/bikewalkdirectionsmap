@@ -240,19 +240,6 @@ function zoomToLevel(newLevel) {
 	}
 }
 
-/* OBSOLETED AND INTEGRATED INTO WHAT WAS FORMERLY getDirections2() -Un-obsoleted -SGW */
-// When "Get directions" is clicked in the InfoWindow for an address that was searched for
-function getDirections(fromAddressText, tripMethod) {
-	alert("getDirections()");
-//		searchedAddressInfoWindow.setContent("<span class='smallarial'><strong>Address:</strong><br>" + ui.item.label + "<br><br><a href='javascript:getDirections()'>Get directions</a></span>");
-	searchedAddressInfoWindow.setContent('<span class="smallarial"><strong>Directions from:</strong><br>' +
-		'<form action="#" onsubmit="getDirections2(\'' + fromAddressText + '\', \'' + tripMethod + '\'); return false;">'+
-		'<input type="text" id="endaddress" value=""><br><br><strong>To:</strong><br>'+
-		fromAddressText + "<br><br>" +
-		'<input type="submit" value="Find directions"></form>');
-	
-}
-
 function findDirectionsPressed(toAddressText) {
 	// make sure this variable is available to getDirections()
 //		root.fromAddressText = document.getElementById("startaddress").value;
@@ -263,16 +250,7 @@ function findDirectionsPressed(toAddressText) {
 	getDirections("bike");
 //		getDirections("drive");
 }
-// ******************************************************************************8
-// ******************************************************************************8
-// ******************************************************************************8
-// * TO DO: SEPARATE getDirections() into two functions so it can be used only
-// * to specify an address, or only to change the trip method
-// ******************************************************************************8
-// ******************************************************************************8
-// ******************************************************************************8
 	
-// Formerly known as getDirections2()
 function getDirections(tripMethod) {
 	// First, clear out any existing markerArray
 	// from previous calculations.
