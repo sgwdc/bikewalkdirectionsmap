@@ -1,19 +1,7 @@
 <?php
-/* From old website
-$status = "RaleighBPAC.org: Interactive Map: ABOUT PAGE";
-$CookieDomain = "raleighbpac.org";
-$CookieName = "RaleighBPACVisitorID";
-
-$RelativeToRoot = "../../";
-//$RelativeToRoot = "../../../../Main/Web Media/";
-include $RelativeToRoot . "site_variables.php";
-include $RelativeToRoot . 'header.php';
-*/
-/* For running locally: (also comment out the two includes above)
-function isIgnoredIP() {
-	return true;
-}
-*/
+	// Track visitors
+	$RelativeToRoot = "../../";
+	include $RelativeToRoot . 'visitor_tracker.php';
 ?>
 <!DOCTYPE html>
 <html>
