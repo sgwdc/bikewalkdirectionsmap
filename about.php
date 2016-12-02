@@ -11,6 +11,11 @@
     <meta charset="utf-8">
 </head>
 <body>
+<?php
+// Google Analytics tracking
+include_once("../../analyticstracking.php")
+?>
+
 <h3>Bike/Walk/Transit Trip Directions Planning Interactive Map</h3>
 
 <p>This web application uses the Google Maps API and jQuery to provide users with multiple routes for bicycling, walking or riding transit between two locations.</p>

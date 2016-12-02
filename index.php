@@ -46,21 +46,6 @@
 	}
     </style>
     
-	<?php // DON'T DISPLAY GOOGLE ANALYTICS FOR IGNORED IPs:
-//	_gaq.push(['_setAccount', 'UA-17356967-1']);
-//    if (!isIgnoredIP($_SERVER['REMOTE_ADDR'])) { ?>
-		<script type="text/javascript">
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-4162060-3']);
-          _gaq.push(['_trackPageview']);
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-        </script>
-	<?php //}; ?>
-
 	<!-- Load jQuery (Currently only using for Hide Menu) -->
     <script src="js/jquery-3.1.0.min.js"></script>
     <!-- jQuery Migrate plugin to ensure compatibility with jQuery v2 -->
@@ -78,6 +63,11 @@
 
 </head>
 <body style="margin:0px; padding:0px;">
+  <?php
+  // Google Analytics tracking
+  include_once($RelativeToRoot . 'analyticstracking.php');
+  ?>
+
 	<!-- LOAD MAP CANVAS -->
 	<div id="map_canvas" style="width:100%; height:100%">
 		Loading map...
