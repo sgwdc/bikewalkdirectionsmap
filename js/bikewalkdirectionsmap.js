@@ -173,7 +173,7 @@ function initialize() {
 	//GEOCODER
 	geocoder = new google.maps.Geocoder();
 
-	/* Don't use autocomplete in this app because it creates the impression no other addresses are valid, and it covers up the other input fields -SGW
+	/* Don't use autocomplete for now because it creates the impression no other addresses are valid, and it covers up the other input fields -SGW
 	// Create handlers for address autocomplete, map clicks, etc.
 	$(function() {
 		$("#address").autocomplete({
@@ -214,7 +214,6 @@ function initialize() {
 //			directionsDisplay.setMap(null);
 			clearDirections();
 
-			//console.log("Trying to display the address-- did it work?");
 			//searchedAddressInfoWindow.setContent("<span class='smallarial'><strong>Address:</strong><br>" + ui.item.label + "<br><br><a href='javascript:alert(\"Yo\");'>Get directions</a></span>");
 		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
 			'<form action="#" onsubmit="findDirectionsPressed(\'' + ui.item.label + '\', \'' + this + '\'); return false;">'+
@@ -247,14 +246,12 @@ function initialize() {
 
 	  //Add listener to marker for reopening the InfoWindow to see the address and get directions
 	  google.maps.event.addListener(marker, 'click', function(event) {
-//		   	alert("clicked")
 			searchedAddressInfoWindow.open(map,marker);
 		});
 
 	  /* This probably isn't possible when reverse geocoding is enabled:
 	  //Add listener to close the InfoWindow when the user clicks on the map
 	  google.maps.event.addListener(map, 'click', function(event) {
-//		   	alert("clicked")
 			searchedAddressInfoWindow.close();
 			document.getElementById('address').blur();
 			document.getElementById('city').blur();
@@ -282,9 +279,6 @@ function getDirections(tripMethod) {
 		travelMode = google.maps.DirectionsTravelMode.DRIVING;
 	} else if (tripMethod == "transit") {
 		travelMode = google.maps.DirectionsTravelMode.TRANSIT;
-	} else {
-		alert("WARNING: tripMethod was not passed to getDirections()"); 
-//			travelMode = google.maps.DirectionsTravelMode.DRIVING;
 	}
 	
 	// Calls function above to highlight the right transport mode
@@ -315,19 +309,6 @@ function getDirections(tripMethod) {
 		} else {
 			alert("There was an error: " + status);
 		}
-		
-		/*
-The DirectionsStatus may return the following values:
-
-* OK indicates the response contains a valid DirectionsResult.
-* NOT_FOUND indicates at least one of the locations specified in the requests's origin, destination, or waypoints could not be geocoded.
-* ZERO_RESULTS indicates no route could be found between the origin and destination.
-* MAX_WAYPOINTS_EXCEEDED indicates that too many DirectionsWaypoints were provided in the DirectionsRequest. The maximum allowed waypoints is 8, plus the origin, and destination. Maps API Premier customers are allowed 23 waypoints, plus the origin, and destination.
-* INVALID_REQUEST indicates that the provided DirectionsRequest was invalid.
-* OVER_QUERY_LIMIT indicates the webpage has sent too many requests within the allowed time period.
-* REQUEST_DENIED indicates the webpage is not allowed to use the directions service.
-* UNKNOWN_ERROR indicates a directions request could not be processed due to a server error. The request may succeed if you try again.
-		*/
 	});
 }
 
@@ -409,11 +390,6 @@ function clearDirections() {
 // This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
 function clearAddressMarker() {
 	marker.setMap(null);
-	/* If this function ends up getting used, replace these with jQuery to display dynamic content:
-	document.getElementById('address').value='';
-	document.getElementById('city').value='Raleigh';
-	document.getElementById('state').value='NC';
-	*/
 	document.getElementById('address').blur();
 	document.getElementById('city').blur();
 	document.getElementById('state').blur();
@@ -465,13 +441,7 @@ function geocodeLatLng(event) {
 // Called by geocodeAddress() and the event listener for user clicks on the mouse
 function geocodeCallback(results, status) {
 	if (status == google.maps.GeocoderStatus.OK) {
-		/* Would there ever be a case of zero results?
-		if (results[0]) {
-		*/
-		/* This does not seem to be necessary -SGW
-		//directionsDisplay.setMap(null);
-		*/
-		/* This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
+		/* Currently the marker is left alone when the InfoWindow is closed, but keep this for possible use later
 		//clearAddressMarker();
 		*/
 		clearDirections();
@@ -497,20 +467,14 @@ function geocodeCallback(results, status) {
 		// Populate the InfoWindow content
 		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
 			'<form action="#" onsubmit="findDirectionsPressed(\'' + firstAddress.formatted_address + '\', \'' + this + '\'); return false;">'+
-//			'<form action="#" onsubmit="return false;">'+
-			
 			'<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
-//			addressToSearchFor + "<br><br>" +
 			// NOTE: Do not include the addressEntered field because no one would be traveling to their origin
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter your starting address:</strong><br>' +
 			'<input type="text" id="fromaddress" value="" style="width:300px; font-size:10px"><br>' +
 			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:168px; font-size:10px" />' +
 			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:55px; font-size:10px" />' +
-
 			'<br><input type="submit" value="Show bicycling & walking directions">' +
-
-//			'<a href="javascript:clearDirections()"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>' +
 			'</form>');
 		
 			// Go ahead and display the InfoWindow for the marker
@@ -520,33 +484,11 @@ function geocodeCallback(results, status) {
 			jQuery('input#city').val(cityEntered);
 			jQuery('input#state').val(stateEntered);
 	} else {
-		alert("Geocode was not successful for the following reason: " + status);
+		alert("ERROR: Geocoding failed for the following reason: " + status);
  	}
 }
 
-// To minimize/maximize a DIV
-function minimize(toggleOnOff, divToToggle) {
-	if (divToToggle == "legend") {
-//			alert("legend rcvd");
-		if (toggleOnOff) {
-//				alert("minimize");
-//				document.getElementById("leftmenu").style.visibility = "hidden";
-			document.getElementById("leftmenu").style.height = "20px";
-			document.getElementById("minimize_legend").style.visibility = "hidden";
-			document.getElementById("maximize_legend").style.visibility = "visible";
-		} else {
-//				document.getElementById("leftmenu").style.visibility = "visible";
-			document.getElementById("leftmenu").style.height = "auto";
-			document.getElementById("minimize_legend").style.visibility = "visible";
-			document.getElementById("maximize_legend").style.visibility = "hidden";
-		}
-	} else {
-		alert("WARNING: minimize() received divToToggle= " + divToToggle);
-	}
-}
-
 function hideMenu(changeToHidden) {
-//		alert("hideMenu()");
 	if (changeToHidden) {
 		jQuery("div#leftmenu").hide();
 		jQuery("div#leftmenu_hidden").show();
