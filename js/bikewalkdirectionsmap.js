@@ -442,14 +442,13 @@ function geocodeCallback(results, status) {
 		root.toAddressText = firstAddress.formatted_address;
 
 		// Populate the InfoWindow content
-		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
-			'<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
+		searchedAddressInfoWindow.setContent('<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
 			// NOTE: Do not include the addressEntered field because no one would be traveling to their origin
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter your starting address:</strong><br>' +
-			'<input type="text" id="fromaddress" value="" style="width:300px; font-size:10px"><br>' +
-			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:168px; font-size:10px" />' +
-			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:55px; font-size:10px" />' +
+			'<input type="text" id="fromaddress" value=""><br>' +
+			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" />' +
+			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" />' +
 			'<br><input id="get-directions" type="submit" value="Show bicycling & walking directions">');
 
 			// Go ahead and display the InfoWindow for the marker
