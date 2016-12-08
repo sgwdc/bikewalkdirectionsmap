@@ -26,39 +26,39 @@ var routesObject;
 // Run once jQuery has finished loading
 jQuery(document).ready(function() {
 	// Define event handler for Google BICYCLING Layer checkbox
-	jQuery('form input#bikeLayer:checkbox').on('change', function(event) {
+	jQuery('input#bikeLayer:checkbox').on('change', function(event) {
 		if (jQuery(this).is(':checked')) {
 			bikeLayer.setMap(map);
 			transitLayer.setMap(null);
 			trafficLayer.setMap(null);
-			jQuery(jQuery('form input#transitLayer:checkbox')).prop('checked', false);
-			jQuery(jQuery('form input#trafficLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('input#transitLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('input#trafficLayer:checkbox')).prop('checked', false);
 		} else{
 			bikeLayer.setMap(null);
 		}
 	});
 
 	// Define event handler for Google TRANSIT Layer checkbox
-	jQuery('form input#transitLayer:checkbox').on('change', function(event) {
+	jQuery('input#transitLayer:checkbox').on('change', function(event) {
 		if (jQuery(this).is(':checked')) {
 			transitLayer.setMap(map);
 			bikeLayer.setMap(null);
 			trafficLayer.setMap(null);
-			jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', false);
-			jQuery(jQuery('form input#trafficLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('input#bikeLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('input#trafficLayer:checkbox')).prop('checked', false);
 		} else{
 			transitLayer.setMap(null);
 		}
 	});
 
 	// Define event handler for Google TRAFFIC Layer checkbox
-	jQuery('form input#trafficLayer:checkbox').on('change', function(event) {
+	jQuery('input#trafficLayer:checkbox').on('change', function(event) {
 		if (jQuery(this).is(':checked')) {
 			trafficLayer.setMap(map);
 			bikeLayer.setMap(null);
 			transitLayer.setMap(null);
-			jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', false);
-			jQuery(jQuery('form input#transitLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('input#bikeLayer:checkbox')).prop('checked', false);
+			jQuery(jQuery('input#transitLayer:checkbox')).prop('checked', false);
 		} else{
 			trafficLayer.setMap(null);
 		}
@@ -145,7 +145,7 @@ function initialize() {
 	*/
 
 	// Reset the form
-	jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', true);
+	jQuery(jQuery('input#bikeLayer:checkbox')).prop('checked', true);
 	
 	directionsService = new google.maps.DirectionsService();
 
@@ -397,18 +397,6 @@ function attachInstructionText(marker, text) {
 }
 */
 
-function MM_findObj(n, d) { //v4.01
-  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-  if(!x && d.getElementById) x=d.getElementById(n); return x;
-}
-function MM_swapImage() { //v3.0
-  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
-   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
-}
-
 // Called when the user enters an address
 function geocodeAddress() {
 	// Concatenate the address fields into one string
@@ -455,7 +443,6 @@ function geocodeCallback(results, status) {
 
 		// Populate the InfoWindow content
 		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
-			'<form>'+
 			'<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
 			// NOTE: Do not include the addressEntered field because no one would be traveling to their origin
 			firstAddress.formatted_address + "<br><br>" +
@@ -463,8 +450,7 @@ function geocodeCallback(results, status) {
 			'<input type="text" id="fromaddress" value="" style="width:300px; font-size:10px"><br>' +
 			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:168px; font-size:10px" />' +
 			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:55px; font-size:10px" />' +
-			'<br><input id="get-directions" type="submit" value="Show bicycling & walking directions">' +
-			'</form>');
+			'<br><input id="get-directions" type="submit" value="Show bicycling & walking directions">');
 
 			// Go ahead and display the InfoWindow for the marker
 			searchedAddressInfoWindow.open(map, marker);

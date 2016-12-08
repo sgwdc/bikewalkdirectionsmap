@@ -79,7 +79,6 @@
 
 	<!-- LOAD TITLE (RaleighTransit.Info) -->
 	<div id="leftmenu" style="position:absolute; right:5px; top:48px; width:225px; padding:5px; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90);">
-		<form method="post" action="" style="margin:0;">
 
 	<div><input type="button" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;"  /></div>
 
@@ -129,7 +128,6 @@
                 <a id="locationLevel2" class="zoomLevels" href="javascript:void(0);">DC Area</a> |
                 <a id="locationLevel3" class="zoomLevels" href="javascript:void(0);">Mid-Atlantic</a>
               </span>
-	</form>
 	</div>
 	<!-- END of #controls -->
 
