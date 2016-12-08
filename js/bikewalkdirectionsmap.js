@@ -70,20 +70,63 @@ jQuery(document).ready(function() {
 		if (newLevel == 'locationLevel1') {
 			// District
 			var locationLevel1 = new google.maps.LatLng(38.905,-77.019);
-			map.setCenter(locationLevel1);		
 			map.setZoom(14);
 		} else if (newLevel == 'locationLevel2') {
-			// DC Metro
+			// DC Area
 			var locationLevel2 = new google.maps.LatLng(38.926,-77.062);
-			map.setCenter(locationLevel2);		
 			map.setZoom(11);		
 		} else if (newLevel == 'locationLevel3') {
 			// Mid-Atlantic
 			var locationLevel3 = new google.maps.LatLng(39.035,-77.259);
-			map.setCenter(locationLevel3);		
 			map.setZoom(8);		
 		}
+		map.setCenter(eval(newLevel));
 	});
+
+	// Define event handler for the "Hide Menu" button
+	jQuery('input#HideMenuID').on('click', function(event) {
+		hideMenu(true);
+	});
+
+	// Define event handler for the "Show Menu" button
+	jQuery('input#ShowMenuID').on('click', function(event) {
+		hideMenu(false);
+	});
+
+	// Define event handler for the "Find address" button
+	jQuery('input#myHtmlInputButton').on('click', function(event) {
+		geocodeAddress();
+	});
+
+	// Define event handler for future instances of the "Show directions" button
+	jQuery(document).on('click', 'input#get-directions', function(event) {
+		findDirectionsPressed();
+	});
+
+	// Define event handler for detecting "ENTER" key press in any destination input fields
+	jQuery('input.destination-field').keypress(function(event) {
+		if ((event.which && event.which == 13) || 
+			(event.keyCode && event.keyCode == 13))
+			{
+				jQuery("input#myHtmlInputButton").click();
+		} 
+	});
+
+	// Define event handler for future instances of the transport method buttons
+	jQuery('img.transport-mode').on('click', function(event) {
+		setTransportModeIcon(event.target.id);
+		getDirections(event.target.id);
+	});
+
+	// Define event handler for future instances of the transport method buttons
+	jQuery(document).on('click', 'img#cancelButton', function(event) {
+		jQuery("div#directions_panel").hide();
+		jQuery("div#leftmenu").show();
+		directionsDisplay.setMap(null);
+		// Remove any existing markers
+		removeAllMarkers();
+	});
+
 });
 
 // This is called by the jQuery function above
@@ -102,7 +145,7 @@ function initialize() {
 	*/
 
 	// Reset the form
-	document.forms[0].bikeLayer.checked = true;
+	jQuery(jQuery('form input#bikeLayer:checkbox')).prop('checked', true);
 	
 	directionsService = new google.maps.DirectionsService();
 
@@ -119,7 +162,7 @@ function initialize() {
   		}
 	});
 	
-	directionsDisplay.setPanel(document.getElementById("directions_panel"));
+	directionsDisplay.setPanel(jQuery("div#directions_panel")[0]);
 	
 	// Centered on Petworth
 	var initialLocation = new google.maps.LatLng(38.939,-77.023);
@@ -149,9 +192,7 @@ function initialize() {
 	};
 
 	// Create a Google Map in the "map_viewer" DIV tag
-  	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	// Instead of doing this here, add it only when we need it
-//		directionsDisplay.setMap(map);
+  	map = new google.maps.Map(jQuery("div#map_canvas")[0], myOptions);
 	
 	marker = new google.maps.Marker({
 		map: map,
@@ -239,7 +280,7 @@ function initialize() {
 	  //Add listener to the map for reverse geocoding
 	  google.maps.event.addListener(map, 'click', function(event) {
 	  	// Only geocode if the user isn't already looking at directions
-	  	if (jQuery('div#directions_panel').css('visibility') == "hidden") {
+	  	if (jQuery('div#directions_panel').css('display') == "none") {
 		  	geocodeLatLng(event);
 	  	}
 	  });
@@ -248,29 +289,21 @@ function initialize() {
 	  google.maps.event.addListener(marker, 'click', function(event) {
 			searchedAddressInfoWindow.open(map,marker);
 		});
-
-	  /* This probably isn't possible when reverse geocoding is enabled:
-	  //Add listener to close the InfoWindow when the user clicks on the map
-	  google.maps.event.addListener(map, 'click', function(event) {
-			searchedAddressInfoWindow.close();
-			document.getElementById('address').blur();
-			document.getElementById('city').blur();
-			document.getElementById('state').blur();
-		});
-		*/
 	}
 	// END function initialize()
 
-function findDirectionsPressed(toAddressText) {
+function findDirectionsPressed() {
 	// Make sure this variable is available to getDirections()
-	root.fromAddressText = document.getElementById("fromaddress").value + ", " + document.getElementById("fromcity").value + ", " + document.getElementById("fromstate").value;
-	root.toAddressText = toAddressText;
+	root.fromAddressText = jQuery("input#fromaddress").val() + ", " + jQuery("input#fromcity").val() + ", " + jQuery("input#fromstate").val();
 	searchedAddressInfoWindow.close();
 	// Start with bike directions
 	getDirections("bike");
 }
 	
 function getDirections(tripMethod) {
+	// Calls function above to highlight the right transport mode
+	setTransportModeIcon(tripMethod);
+
 	if (tripMethod == "walk") {
 		travelMode = google.maps.DirectionsTravelMode.WALKING;
 	} else if (tripMethod == "bike") {
@@ -280,10 +313,7 @@ function getDirections(tripMethod) {
 	} else if (tripMethod == "transit") {
 		travelMode = google.maps.DirectionsTravelMode.TRANSIT;
 	}
-	
-	// Calls function above to highlight the right transport mode
-	setTransportModeIcon(tripMethod);
-	
+
 	var request = {
 		origin: root.fromAddressText, 
 		destination: root.toAddressText,
@@ -292,8 +322,8 @@ function getDirections(tripMethod) {
 	};
 	directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
-			document.getElementById("directions_panel").style.visibility = "visible";
-			document.getElementById("leftmenu").style.visibility = "hidden";
+			jQuery("div#directions_panel").show();
+			jQuery("div#leftmenu").hide();
 			
 			// Attach directions to the map now that we're actually going to use it
 			directionsDisplay.setMap(null);
@@ -319,30 +349,19 @@ function removeAllMarkers() {
 	}		
 }
 
-function setTransportModeIcon(transportMode) {
-	if (transportMode == "walk") {
-		MM_swapImage('pedIcon','','images/ped_on.png',0);
-	} else {
-		MM_swapImage('pedIcon','','images/ped_off.png',0);
-	}
-	
-	if (transportMode == "bike") {
-		MM_swapImage('bikeIcon','','images/bike_on.png',0);
-	} else {
-		MM_swapImage('bikeIcon','','images/bike_off.png',0);
-	}
-	
-	if (transportMode == "drive") {
-		MM_swapImage('carIcon','','images/car_on.png',0);
-	} else {
-		MM_swapImage('carIcon','','images/car_off.png',0);
-	}
-
-	if (transportMode == "transit") {
-		MM_swapImage('transitIcon','','images/transit_on.png',0);
-	} else {
-		MM_swapImage('transitIcon','','images/transit_off.png',0);
-	}
+// Called by initialize() and transport mode button handler
+function setTransportModeIcon(tripMethod) {
+	// Iterate through each transport mode icon
+	jQuery.each(jQuery('img.transport-mode'), function() {
+		var thisMethod = jQuery(this)[0].id;
+		// If this is the new mode, switch to the "on" icon
+		if (thisMethod == tripMethod) {
+			jQuery(this).attr('src', 'images/' + thisMethod + '_on.png');
+		// Otherwise, switch to the "off" icon
+		} else {
+			jQuery(this).attr('src', 'images/' + thisMethod + '_off.png');
+		}
+	})
 }
 
 // Called by directionsService.route(), and by the "routeindex_changed" event handler
@@ -378,23 +397,6 @@ function attachInstructionText(marker, text) {
 }
 */
 
-// Remove the directions
-function clearDirections() {
-	document.getElementById("directions_panel").style.visibility = "hidden";
-	document.getElementById("leftmenu").style.visibility = "visible";
-	directionsDisplay.setMap(null);
-	// Remove any existing markers
-	removeAllMarkers();
-}
-
-// This function is not currently being used - the marker is left alone when the InfoWindow is closed - but keep it for possible use later
-function clearAddressMarker() {
-	marker.setMap(null);
-	document.getElementById('address').blur();
-	document.getElementById('city').blur();
-	document.getElementById('state').blur();
-}
-
 function MM_findObj(n, d) { //v4.01
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
 	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
@@ -407,20 +409,10 @@ function MM_swapImage() { //v3.0
    if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 
-// Handler to allow ENTER key to submit the "Enter address" form
-function keyPressed(event) {
-	if ((event.which && event.which == 13) || 
-		(event.keyCode && event.keyCode == 13))
-		{document.getElementById('myHtmlInputButton').click();
-		return false;
-	} 
-	else return true;		
-}
-
 // Called when the user enters an address
 function geocodeAddress() {
 	// Concatenate the address fields into one string
-	var addressToSearchFor = document.getElementById("address").value + ", " + document.getElementById("city").value + ", " + document.getElementById("state").value;
+	var addressToSearchFor = jQuery("input#address").val() + ", " + jQuery("input#city").val() + ", " + jQuery("input#state").val();
 
 	// Send the user-entered address to the Google geocoder
 	geocoder.geocode( { 'address': addressToSearchFor}, function(results, status) {
@@ -441,11 +433,6 @@ function geocodeLatLng(event) {
 // Called by geocodeAddress() and the event listener for user clicks on the mouse
 function geocodeCallback(results, status) {
 	if (status == google.maps.GeocoderStatus.OK) {
-		/* Currently the marker is left alone when the InfoWindow is closed, but keep this for possible use later
-		//clearAddressMarker();
-		*/
-		clearDirections();
-
 		var firstAddress = results[0];
 		// Center the map on the geocoded address
 		map.setCenter(firstAddress.geometry.location);
@@ -464,9 +451,11 @@ function geocodeCallback(results, status) {
 		cityEntered = addressPieces[1];
 		stateEntered = addressPieces[2];
 
+		root.toAddressText = firstAddress.formatted_address;
+
 		// Populate the InfoWindow content
 		searchedAddressInfoWindow.setContent('<span class="smallarial">' +
-			'<form action="#" onsubmit="findDirectionsPressed(\'' + firstAddress.formatted_address + '\', \'' + this + '\'); return false;">'+
+			'<form>'+
 			'<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
 			// NOTE: Do not include the addressEntered field because no one would be traveling to their origin
 			firstAddress.formatted_address + "<br><br>" +
@@ -474,9 +463,9 @@ function geocodeCallback(results, status) {
 			'<input type="text" id="fromaddress" value="" style="width:300px; font-size:10px"><br>' +
 			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" style="width:168px; font-size:10px" />' +
 			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" style="width:55px; font-size:10px" />' +
-			'<br><input type="submit" value="Show bicycling & walking directions">' +
+			'<br><input id="get-directions" type="submit" value="Show bicycling & walking directions">' +
 			'</form>');
-		
+
 			// Go ahead and display the InfoWindow for the marker
 			searchedAddressInfoWindow.open(map, marker);
 			// Update the destination address (main search box)

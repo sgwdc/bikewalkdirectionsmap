@@ -74,14 +74,14 @@
    </div>
 
 	<div id="leftmenu_hidden" style="position:absolute; right:5px; top:48px; display:none;">
-		<input type="button" name="ShowMenuID" id="ShowMenuID" value="Show Menu" style="font-size:18px; width:130px; font-weight:bold;" onClick="hideMenu(false)" />
+		<input type="button" id="ShowMenuID" value="Show Menu" style="font-size:18px; width:130px; font-weight:bold;" />
 	</div>
 
 	<!-- LOAD TITLE (RaleighTransit.Info) -->
 	<div id="leftmenu" style="position:absolute; right:5px; top:48px; width:225px; padding:5px; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90);">
 		<form method="post" action="" style="margin:0;">
 
-	<div><input type="button" name="HideMenuID" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;" onClick="hideMenu(true)" /></div>
+	<div><input type="button" id="HideMenuID" value="Hide Menu" style="font-size:15px; width:100%; font-weight:bold;"  /></div>
 
 		<span class="largetitle">Bicycling/Walking/Transit<br>Trip Planning Directions</span>
 		<span class="smallarial"><strong><br>
@@ -95,7 +95,7 @@
           <div style="float:left; background-color:#004d00; width:15px;">&nbsp;</div>
           <div style="float:left; background-color:#00fe00; width:15px;">&nbsp;</div>
           <label>
-              <input type="checkbox" name="bikeLayer" id="bikeLayer" value="" />
+              <input type="checkbox" id="bikeLayer" value="" />
                 <span class="smallarial">Google Bicycle Layer</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." />
                   <br />
             <div style="clear:both"></div>
@@ -107,7 +107,7 @@
           <div style="float:left; background-color:#009b57; width:6px;">&nbsp;</div>
           <div style="float:left; background-color:#0d7bba; width:6px;">&nbsp;</div>
           <label>
-              <input type="checkbox" name="transitLayer" id="transitLayer" value="" />
+              <input type="checkbox" id="transitLayer" value="" />
                 <span class="smallarial">Google Transit Layer</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Transit Layer shows rail transit lines." alt="Google's Transit Layer shows rail transit lines." /><br />
             <div style="clear:both"></div>
             
@@ -116,7 +116,7 @@
           <div style="float:left; background-color:#f07d02; width:10px;">&nbsp;</div>
           <div style="float:left; background-color:#84ca50; width:10px;">&nbsp;</div>
           <label>
-              <input type="checkbox" name="trafficLayer" id="trafficLayer" value="" />
+              <input type="checkbox" id="trafficLayer" value="" />
                 <span class="smallarial">Google Realtime Traffic</span></label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time traffic conditions." alt="Google's Traffic Layer shows real-time traffic conditions." /><br />
             <div style="clear:both"></div>
 
@@ -136,27 +136,23 @@
 	<div>
 	    <span class="smallarial">
            <strong>Enter your destination address:</strong>
-                <input id="address"  type="text" value="" style="width:220px; font-size:10px" onKeyDown="keyPressed(event)" /><br>
+                <input id="address" type="text" class="destination-field" value="" style="width:220px; font-size:10px" /><br>
                  <strong>City:</strong>
-                <input id="city"  type="text" value="Washington" style="width:88px; font-size:10px" onKeyDown="keyPressed(event)" />
+                <input id="city" type="text" class="destination-field" value="Washington" style="width:88px; font-size:10px" />
                  <strong>State:</strong>
-                <input id="state"  type="text" value="DC" style="width:58px; font-size:10px"  onkeydown="keyPressed(event)" />
-                <input id="myHtmlInputButton" name="myHtmlInputButton" type="button" value="Find address" style="font-size:10px; font-weight:bold;" onClick="geocodeAddress()">
+                <input id="state" type="text" class="destination-field" value="DC" style="width:58px; font-size:10px" />
+                <input id="myHtmlInputButton" type="button" value="Find address" style="font-size:10px; font-weight:bold;">
 		</span>
 		</div>
 	</div>
 
   <!-- LOAD DIRECTIONS DIV -->
-  <div id="directions_panel" style="position:absolute; left:70px; top:5px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90); visibility:hidden; ">
-    <!--
-    [ <a href="javascript:clearDirections()">Clear directions</a> ]
-    -->
-    
-<a href="javascript:getDirections('walk')"><img src="images/ped_off.png" alt="Walking directions" name="pedIcon" width="39" height="25" border="0" id="pedIcon" /></a>
-<a href="javascript:getDirections('bike')"><img src="images/bike_on.png" alt="Bicycling directions" name="bikeIcon" width="39" height="25" border="0" id="bikeIcon" /></a>
-<a href="javascript:getDirections('transit')"><img src="images/transit_off.png" alt="Transit directions" name="transitIcon" width="39" height="25" border="0" id="transitIcon" /></a>
-<a href="javascript:getDirections('drive')"><img src="images/car_off.png" alt="Driving directions" name="carIcon" width="39" height="25" border="0" id="carIcon" /></a>
-<a href="javascript:clearDirections();"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>
+  <div id="directions_panel" style="position:absolute; left:70px; top:5px; width:245px; padding:5px; overflow:hidden; border:1px; border-color:#000; border-style:solid; background-color:#FFF; opacity:0.90;filter:alpha(opacity=90); display:none; ">
+<img src="images/walk_off.png" alt="Walking directions" class="transport-mode" width="39" height="25" border="0" id="walk" />
+<img src="images/bike_on.png" alt="Bicycling directions" class="transport-mode" width="39" height="25" border="0" id="bike" />
+<img src="images/transit_off.png" alt="Transit directions" class="transport-mode" width="39" height="25" border="0" id="transit" />
+<img src="images/drive_off.png" alt="Driving directions" class="transport-mode" width="39" height="25" border="0" id="drive" />
+<img src="images/cancel.png" alt="Cancel directions" width="39" height="25" border="0" id="cancelButton" />
   </div>
    </body>
 </html>
