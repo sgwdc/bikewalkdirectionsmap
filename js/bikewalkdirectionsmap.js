@@ -268,7 +268,7 @@ function initialize() {
 
 			'<input type="submit" value="Get directions">' +
 
-//			'<a href="javascript:clearDirections()"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon" /></a>' +
+//			'<a href="javascript:clearDirections()"><img src="images/cancel.png" alt="Cancel directions" name="cancelIcon" width="39" height="25" border="0" id="cancelIcon"></a>' +
 			'</form>');
 				// Go ahead and display the InfoWindow for the marker
 				searchedAddressInfoWindow.open(map, marker);
@@ -447,8 +447,8 @@ function geocodeCallback(results, status) {
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter your starting address:</strong><br>' +
 			'<input type="text" id="fromaddress" value=""><br>' +
-			'<strong>City:</strong> <input id="fromcity" type="text" value="' + cityEntered + '" />' +
-			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" />' +
+			'<strong>City:</strong> <input id="fromcity" type="text" value="' + cityEntered + '">' +
+			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '">' +
 			'<br><input id="get-directions" type="submit" value="Show bicycling & walking directions">');
 
 			// Go ahead and display the InfoWindow for the marker

@@ -40,11 +40,11 @@
 	</div>
 
 	<div id="leftmenu_hidden">
-		<input type="button" id="ShowMenuID" value="Show Menu" />
+		<input type="button" id="ShowMenuID" value="Show Menu">
 	</div>
 
 	<div id="leftmenu">
-		<div><input type="button" id="HideMenuID" value="Hide Menu" /></div>
+		<div><input type="button" id="HideMenuID" value="Hide Menu"></div>
 
 		<div class="largetitle">Bicycling/Walking/Transit<br>Trip Planning Directions</div>
 		<strong><a href="about.php">About this map</a></strong>
@@ -56,9 +56,9 @@
 			<!-- Colors for Google BICYCLING Layer legend -->
 			<div class="legendcolor twowide darkgreen"></div>
 			<div class="legendcolor twowide brightgreen"></div>
-			<label><input type="checkbox" id="bikeLayer" value="" />
-			Google Bicycle Layer</label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." />
-			<br />
+			<label><input type="checkbox" id="bikeLayer" value="">
+			Google Bicycle Layer</label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths." alt="Google's Bicycle Layer shows existing greenways, bicycle lanes, paths, routes, and mixed-use paths.">
+			<br>
 		</div>
 
 		<div class="clearfix">
@@ -68,9 +68,9 @@
 			<div class="legendcolor fivewide yellow"></div>
 			<div class="legendcolor fivewide green"></div>
 			<div class="legendcolor fivewide blue"></div>
-			<label><input type="checkbox" id="transitLayer" value="" />
-			Google Transit Layer</label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Transit Layer shows rail transit lines." alt="Google's Transit Layer shows rail transit lines." />
-			<br />
+			<label><input type="checkbox" id="transitLayer" value="">
+			Google Transit Layer</label> <img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Transit Layer shows rail transit lines." alt="Google's Transit Layer shows rail transit lines.">
+			<br>
 		</div>
 
 		<div class="clearfix">
@@ -78,10 +78,10 @@
 			<div class="legendcolor fourwide red"></div>
 			<div class="legendcolor fourwide orange"></div>
 			<div class="legendcolor fourwide green"></div>
-			<label><input type="checkbox" id="trafficLayer" value="" />
+			<label><input type="checkbox" id="trafficLayer" value="">
 			Google Realtime Traffic</label>
-			<img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time traffic conditions." alt="Google's Traffic Layer shows real-time traffic conditions." />
-			<br />
+			<img src="images/question_mark.jpg" align="absbottom" width="16" height="16" title="Google's Traffic Layer shows real-time traffic conditions." alt="Google's Traffic Layer shows real-time traffic conditions.">
+			<br>
 		</div>
 
 		<div class="divider"></div>
@@ -95,22 +95,22 @@
 
 		<div id="destination">
 			<strong>Enter your destination address:</strong>
-			<input id="address" type="text" class="destination-field" value="" /><br>
+			<input id="address" type="text" class="destination-field" value=""><br>
 			<strong>City:</strong>
-			<input id="city" type="text" class="destination-field" value="Washington" />
+			<input id="city" type="text" class="destination-field" value="Washington">
 			<strong>State:</strong>
-			<input id="state" type="text" class="destination-field" value="DC" />
+			<input id="state" type="text" class="destination-field" value="DC">
 			<input id="myHtmlInputButton" type="button" value="Find address">
 		</div>
 	</div>
 
 	<!-- Directions DIV -->
 	<div id="directions_panel">
-		<img src="images/walk_off.png" alt="Walking directions" class="transport-mode" width="39" height="25" border="0" id="walk" />
-		<img src="images/bike_on.png" alt="Bicycling directions" class="transport-mode" width="39" height="25" border="0" id="bike" />
-		<img src="images/transit_off.png" alt="Transit directions" class="transport-mode" width="39" height="25" border="0" id="transit" />
-		<img src="images/drive_off.png" alt="Driving directions" class="transport-mode" width="39" height="25" border="0" id="drive" />
-		<img src="images/cancel.png" alt="Cancel directions" width="39" height="25" border="0" id="cancelButton" />
+		<img src="images/walk_off.png" alt="Walking directions" class="transport-mode" width="39" height="25" border="0" id="walk">
+		<img src="images/bike_on.png" alt="Bicycling directions" class="transport-mode" width="39" height="25" border="0" id="bike">
+		<img src="images/transit_off.png" alt="Transit directions" class="transport-mode" width="39" height="25" border="0" id="transit">
+		<img src="images/drive_off.png" alt="Driving directions" class="transport-mode" width="39" height="25" border="0" id="drive">
+		<img src="images/cancel.png" alt="Cancel directions" width="39" height="25" border="0" id="cancelButton">
 	</div>
 </body>
 </html>
