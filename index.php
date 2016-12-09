@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bicycling/Walking/Transit Trip Planning Directions</title>
+	<title>Bike/Walk/Transit Trip Planning Directions</title>
 	<meta name="viewport" content="initial-scale=1.0">
 	<meta charset="utf-8">
 	
@@ -30,8 +30,8 @@
 </head>
 <body>
 	<?php
-	// Google Analytics tracking
-	include_once($RelativeToRoot . 'analyticstracking.php');
+		// Google Analytics tracking
+		include_once($RelativeToRoot . 'analyticstracking.php');
 	?>
 
 	<!-- LOAD MAP CANVAS -->
@@ -46,7 +46,7 @@
 	<div id="leftmenu">
 		<div><input type="button" id="HideMenuID" value="Hide Menu"></div>
 
-		<div class="largetitle">Bicycling/Walking/Transit<br>Trip Planning Directions</div>
+		<div class="largetitle">Bike/Walk/Transit Directions</div>
 		<strong><a href="about.php">About this map</a></strong>
 
 		<div class="divider"></div>

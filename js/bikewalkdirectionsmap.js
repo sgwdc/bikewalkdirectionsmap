@@ -33,7 +33,7 @@ jQuery(document).ready(function() {
 			trafficLayer.setMap(null);
 			jQuery(jQuery('input#transitLayer:checkbox')).prop('checked', false);
 			jQuery(jQuery('input#trafficLayer:checkbox')).prop('checked', false);
-		} else{
+		} else {
 			bikeLayer.setMap(null);
 		}
 	});
@@ -46,7 +46,7 @@ jQuery(document).ready(function() {
 			trafficLayer.setMap(null);
 			jQuery(jQuery('input#bikeLayer:checkbox')).prop('checked', false);
 			jQuery(jQuery('input#trafficLayer:checkbox')).prop('checked', false);
-		} else{
+		} else {
 			transitLayer.setMap(null);
 		}
 	});
@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
 			transitLayer.setMap(null);
 			jQuery(jQuery('input#bikeLayer:checkbox')).prop('checked', false);
 			jQuery(jQuery('input#transitLayer:checkbox')).prop('checked', false);
-		} else{
+		} else {
 			trafficLayer.setMap(null);
 		}
 	});
@@ -105,10 +105,8 @@ jQuery(document).ready(function() {
 
 	// Define event handler for detecting "ENTER" key press in any destination input fields
 	jQuery('input.destination-field').keypress(function(event) {
-		if ((event.which && event.which == 13) || 
-			(event.keyCode && event.keyCode == 13))
-			{
-				jQuery("input#myHtmlInputButton").click();
+		if ((event.which && event.which == 13) || (event.keyCode && event.keyCode == 13)) {
+			jQuery("input#myHtmlInputButton").click();
 		} 
 	});
 
@@ -442,7 +440,7 @@ function geocodeCallback(results, status) {
 		root.toAddressText = firstAddress.formatted_address;
 
 		// Populate the InfoWindow content
-		searchedAddressInfoWindow.setContent('<strong>Get walking, bicycling and driving trip routing directions to:</strong><br>'+
+		searchedAddressInfoWindow.setContent('<strong>Get bike/walk/transit directions to:</strong><br>'+
 			// NOTE: Do not include the addressEntered field because no one would be traveling to their origin
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter your starting address:</strong><br>' +
