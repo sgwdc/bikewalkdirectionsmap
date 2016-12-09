@@ -154,20 +154,20 @@ function initialize() {
 	// Define event handler for when the user selects a different route choice
 	google.maps.event.addListener(directionsDisplay, 'routeindex_changed', function() {
 		// Get the index of the newly selected route
-  		var routeIndex = directionsDisplay.getRouteIndex();
-  		// Ignore the initial events when the routes are first received
-  		if (typeof routesObject != "undefined") {
+		var routeIndex = directionsDisplay.getRouteIndex();
+		// Ignore the initial events when the routes are first received
+		if (typeof routesObject != "undefined") {
 			// Add markers for each step of the newly selected route
-  			showSteps(routesObject[routeIndex])
-  		}
+			showSteps(routesObject[routeIndex])
+		}
 	});
 	
 	directionsDisplay.setPanel(jQuery("div#directions_panel")[0]);
 	
 	// Centered on Petworth
 	var initialLocation = new google.maps.LatLng(38.939,-77.023);
-  
- 	var myOptions = {
+
+	var myOptions = {
 		zoom: 12,
 		center: initialLocation,
 	//		mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -192,7 +192,7 @@ function initialize() {
 	};
 
 	// Create a Google Map in the "map_viewer" DIV tag
-  	map = new google.maps.Map(jQuery("div#map_canvas")[0], myOptions);
+	map = new google.maps.Map(jQuery("div#map_canvas")[0], myOptions);
 	
 	marker = new google.maps.Marker({
 		map: map,
@@ -218,28 +218,28 @@ function initialize() {
 	// Create handlers for address autocomplete, map clicks, etc.
 	$(function() {
 		$("#address").autocomplete({
-								   
-		  //This bit uses the geocoder to fetch address values
-		  source: function(request, response) {
+								 
+		//This bit uses the geocoder to fetch address values
+		source: function(request, response) {
 //			geocoder.geocode( {'address': request.term }, function(results, status) {
-																   
-		  var southWest = new google.maps.LatLng(35.74,-79.20);
-		  var northEast = new google.maps.LatLng(36.10,-78.43);
-		  var bounds = new google.maps.LatLngBounds(southWest,northEast);
-																   
+																 
+		var southWest = new google.maps.LatLng(35.74,-79.20);
+		var northEast = new google.maps.LatLng(36.10,-78.43);
+		var bounds = new google.maps.LatLngBounds(southWest,northEast);
+																 
 			geocoder.geocode( {'address': request.term, 'bounds' : bounds }, function(results, status) {
-			  response($.map(results, function(item) {
+			response($.map(results, function(item) {
 				return {
-				  label:  item.formatted_address,
-				  value: item.formatted_address,
-				  latitude: item.geometry.location.lat(),
-				  longitude: item.geometry.location.lng()
+				label:item.formatted_address,
+				value: item.formatted_address,
+				latitude: item.geometry.location.lat(),
+				longitude: item.geometry.location.lng()
 				}
-			  }));
+			}));
 			})
-		  },
-		  //This bit is executed upon selection of an address
-		  select: function(event, ui) {
+		},
+		//This bit is executed upon selection of an address
+		select: function(event, ui) {
 			$("#latitude").val(ui.item.latitude);
 			$("#longitude").val(ui.item.longitude);
 			var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
@@ -272,21 +272,21 @@ function initialize() {
 			'</form>');
 				// Go ahead and display the InfoWindow for the marker
 				searchedAddressInfoWindow.open(map, marker);
-		  }
+		}
 		});
-	  });
-	*/  
+	});
+	*/
 
-	  //Add listener to the map for reverse geocoding
-	  google.maps.event.addListener(map, 'click', function(event) {
-	  	// Only geocode if the user isn't already looking at directions
-	  	if (jQuery('div#directions_panel').css('display') == "none") {
-		  	geocodeLatLng(event);
-	  	}
-	  });
+	//Add listener to the map for reverse geocoding
+	google.maps.event.addListener(map, 'click', function(event) {
+		// Only geocode if the user isn't already looking at directions
+		if (jQuery('div#directions_panel').css('display') == "none") {
+			geocodeLatLng(event);
+		}
+	});
 
-	  //Add listener to marker for reopening the InfoWindow to see the address and get directions
-	  google.maps.event.addListener(marker, 'click', function(event) {
+	//Add listener to marker for reopening the InfoWindow to see the address and get directions
+	google.maps.event.addListener(marker, 'click', function(event) {
 			searchedAddressInfoWindow.open(map,marker);
 		});
 	}
@@ -367,33 +367,33 @@ function setTransportModeIcon(tripMethod) {
 // Called by directionsService.route(), and by the "routeindex_changed" event handler
 // For each step, place a marker, and add the text to the marker's InfoWindow. Also attach the marker to an array so we can keep track of it and remove it when calculating new routes
 function showSteps(selectedRoute) {
-  // Get the steps for the first leg of this trip (It is safe to assume there is only one)
-  var steps = selectedRoute.legs[0].steps;
+	// Get the steps for the first leg of this trip (It is safe to assume there is only one)
+	var steps = selectedRoute.legs[0].steps;
 
-  // Remove any existing markers
-  removeAllMarkers();
+	// Remove any existing markers
+	removeAllMarkers();
 
-  // Add markers for the selected route
-  for (var i = 0; i < steps.length; i++) {
-	  var marker = new google.maps.Marker({
-		position: steps[i].start_point, 
-		map: map
-	  });
-	  /* Not currently implemented
-	  attachInstructionText(marker, steps[i].instructions);
-	  */
-	  markerArray[i] = marker;
-  }
+	// Add markers for the selected route
+	for (var i = 0; i < steps.length; i++) {
+		var marker = new google.maps.Marker({
+			position: steps[i].start_point, 
+			map: map
+		});
+		/* Not currently implemented
+		attachInstructionText(marker, steps[i].instructions);
+		*/
+		markerArray[i] = marker;
+	}
 }
 
 /* Not currently implemented: To show a step's instructions when the user clicks a marker, we'll need to close any InfoWindows opened when the user clicked on an instruction in the directions
 // Event listener for when the user clicks on a marker
 function attachInstructionText(marker, text) {
-  google.maps.event.addListener(marker, 'click', function() {
-  	// Display the instructions for that step
-	stepDisplayInfoWindow.setContent(text);
-	stepDisplayInfoWindow.open(map, marker);
-  });
+	google.maps.event.addListener(marker, 'click', function() {
+		// Display the instructions for that step
+		stepDisplayInfoWindow.setContent(text);
+		stepDisplayInfoWindow.open(map, marker);
+	});
 }
 */
 
@@ -411,7 +411,7 @@ function geocodeAddress() {
 
 // Called when the user clicks on the map
 function geocodeLatLng(event) {
-  	// Send the latitude & longitude of the user click to the Google geocoder
+	// Send the latitude & longitude of the user click to the Google geocoder
 	geocoder.geocode({'latLng': event.latLng}, function(results, status) {
 		// Pass the results to the callback function (shared with geocoding by user-entered address)
 		geocodeCallback(results, status);
@@ -447,7 +447,7 @@ function geocodeCallback(results, status) {
 			firstAddress.formatted_address + "<br><br>" +
 			'<strong>Enter your starting address:</strong><br>' +
 			'<input type="text" id="fromaddress" value=""><br>' +
-			'<strong>City:</strong> <input id="fromcity"  type="text" value="' + cityEntered + '" />' +
+			'<strong>City:</strong> <input id="fromcity" type="text" value="' + cityEntered + '" />' +
 			'&nbsp;&nbsp;<strong>State:</strong> <input id="fromstate" type="text" value="' + stateEntered + '" />' +
 			'<br><input id="get-directions" type="submit" value="Show bicycling & walking directions">');
 
@@ -459,7 +459,7 @@ function geocodeCallback(results, status) {
 			jQuery('input#state').val(stateEntered);
 	} else {
 		alert("ERROR: Geocoding failed for the following reason: " + status);
- 	}
+	}
 }
 
 function hideMenu(changeToHidden) {

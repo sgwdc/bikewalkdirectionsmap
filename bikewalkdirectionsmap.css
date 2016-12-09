@@ -109,8 +109,8 @@ div#leftmenu .legendcolor.blue {
 	background-color:#0d7bba;
 }
 div#leftmenu div.divider {
-    border-top: 1px solid #000;
-    margin:10px 0;
+	border-top: 1px solid #000;
+	margin:10px 0;
 }
 div#leftmenu input {
 	font-size:10px;
@@ -148,11 +148,11 @@ div#directions_panel {
 }
 /* For clearing floats */
 .clearfix:after { 
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
-   clear: both;
+	content: "."; 
+	visibility: hidden; 
+	display: block; 
+	height: 0; 
+	clear: both;
 }
 /* InfoWindow */
 div.gm-style-iw input {
