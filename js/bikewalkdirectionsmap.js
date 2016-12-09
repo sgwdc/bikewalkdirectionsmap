@@ -2,7 +2,6 @@
 //google.maps.event.addDomListener(window, 'load', initialize);
 
 // Define variables here so they'll be globally available to all functions
-var root = this;
 var initialLocation;
 var currentLocationDisplay;
 var geocoder;
@@ -292,7 +291,7 @@ function initialize() {
 
 function findDirectionsPressed() {
 	// Make sure this variable is available to getDirections()
-	root.fromAddressText = jQuery("input#fromaddress").val() + ", " + jQuery("input#fromcity").val() + ", " + jQuery("input#fromstate").val();
+	fromAddressText = jQuery("input#fromaddress").val() + ", " + jQuery("input#fromcity").val() + ", " + jQuery("input#fromstate").val();
 	searchedAddressInfoWindow.close();
 	// Start with bike directions
 	getDirections("bike");
@@ -313,8 +312,8 @@ function getDirections(tripMethod) {
 	}
 
 	var request = {
-		origin: root.fromAddressText, 
-		destination: root.toAddressText,
+		origin: fromAddressText, 
+		destination: toAddressText,
 		travelMode: travelMode,
 		provideRouteAlternatives: true
 	};
@@ -330,7 +329,7 @@ function getDirections(tripMethod) {
 			directionsDisplay.setDirections(result);
 
 			// Save all routes as a global variable so we can udpate the markers if the user selects a different route choice
-			root.routesObject = result.routes;
+			routesObject = result.routes;
 
 			// Add markers for each step of the first route
 			showSteps(result.routes[0]);
@@ -437,7 +436,7 @@ function geocodeCallback(results, status) {
 		cityEntered = addressPieces[1];
 		stateEntered = addressPieces[2];
 
-		root.toAddressText = firstAddress.formatted_address;
+		toAddressText = firstAddress.formatted_address;
 
 		// Populate the InfoWindow content
 		searchedAddressInfoWindow.setContent('<strong>Get bike/walk/transit directions to:</strong><br>'+
