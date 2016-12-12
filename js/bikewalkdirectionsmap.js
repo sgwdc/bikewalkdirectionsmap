@@ -64,7 +64,7 @@ jQuery(document).ready(function() {
 	});
 
 	// Define event handler for the zoom level links in the menu
-	jQuery('div#leftmenu .zoomLevels').on('click', function(event) {
+	jQuery('div#controls .zoomLevels').on('click', function(event) {
 		var newLevel = $(this).attr('id');
 		if (newLevel == 'locationLevel1') {
 			// District
@@ -118,7 +118,7 @@ jQuery(document).ready(function() {
 	// Define event handler for future instances of the transport method buttons
 	jQuery(document).on('click', 'img#cancelButton', function(event) {
 		jQuery("div#directions_panel").hide();
-		jQuery("div#leftmenu").show();
+		jQuery("div#controls").show();
 		directionsDisplay.setMap(null);
 		// Remove any existing markers
 		removeAllMarkers();
@@ -320,7 +320,7 @@ function getDirections(tripMethod) {
 	directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			jQuery("div#directions_panel").show();
-			jQuery("div#leftmenu").hide();
+			jQuery("div#controls").hide();
 			
 			// Attach directions to the map now that we're actually going to use it
 			directionsDisplay.setMap(null);
@@ -461,11 +461,11 @@ function geocodeCallback(results, status) {
 
 function hideMenu(changeToHidden) {
 	if (changeToHidden) {
-		jQuery("div#leftmenu").hide();
-		jQuery("div#leftmenu_hidden").show();
+		jQuery("div#controls").hide();
+		jQuery("div#controls_hidden").show();
 		
 	} else {
-		jQuery("div#leftmenu_hidden").hide();
-		jQuery("div#leftmenu").show();
+		jQuery("div#controls_hidden").hide();
+		jQuery("div#controls").show();
 	}
 }

@@ -31,20 +31,20 @@ div#map_canvas {
 	height:100%
 }
 
-div#leftmenu_hidden {
+div#controls_hidden {
 	position:absolute;
 	right:5px;
 	top:48px;
 	display:none;
 }
 
-div#leftmenu_hidden input#ShowMenuID {
+div#controls_hidden input#ShowMenuID {
 	font-size:18px;
 	width:130px;
 	font-weight:bold;
 }
 
-div#leftmenu {
+div#controls {
 	position:absolute;
 	right:5px;
 	top:48px;
@@ -63,12 +63,12 @@ div#leftmenu {
 	*/
 
 }
-div#leftmenu input#HideMenuID {
+div#controls input#HideMenuID {
 	font-size:15px;
 	width:100%;
 	font-weight:bold;
 }
-div#leftmenu .legendcolor {
+div#controls .legendcolor {
 	float:left;
 	/*
 	font-size:20px;
@@ -77,58 +77,58 @@ div#leftmenu .legendcolor {
 	margin-bottom:2px;
 }
 /* Widths */
-div#leftmenu .legendcolor.twowide {
+div#controls .legendcolor.twowide {
 	width:15px;
 }
-div#leftmenu .legendcolor.fourwide {
+div#controls .legendcolor.fourwide {
 	width:10px;
 }
-div#leftmenu .legendcolor.fivewide {
+div#controls .legendcolor.fivewide {
 	width:6px;
 }
 /* Colors */
-div#leftmenu .legendcolor.darkgreen {
+div#controls .legendcolor.darkgreen {
 	background-color:#004d00;
 }
-div#leftmenu .legendcolor.brightgreen {
+div#controls .legendcolor.brightgreen {
 	background-color:#00fe00;
 }
-div#leftmenu .legendcolor.red {
+div#controls .legendcolor.red {
 	background-color:#ea4434;
 }
-div#leftmenu .legendcolor.orange {
+div#controls .legendcolor.orange {
 	background-color:#f38b38;
 }
-div#leftmenu .legendcolor.yellow {
+div#controls .legendcolor.yellow {
 	background-color:#f3d810;
 }
-div#leftmenu .legendcolor.green {
+div#controls .legendcolor.green {
 	background-color:#84ca50;
 }
-div#leftmenu .legendcolor.blue {
+div#controls .legendcolor.blue {
 	background-color:#0d7bba;
 }
-div#leftmenu div.divider {
+div#controls div.divider {
 	border-top: 1px solid #000;
 	margin:10px 0;
 }
-div#leftmenu input {
+div#controls input {
 	font-size:10px;
 }
-div#leftmenu input#address {
+div#controls input#address {
 	width:220px;
 }
-div#leftmenu input#city {
+div#controls input#city {
 	width:88px;
 }
-div#leftmenu input#state {
+div#controls input#state {
 	width:58px;
 }
-div#leftmenu input#myHtmlInputButton {
+div#controls input#myHtmlInputButton {
 	font-weight:bold;
 }
 
-div#leftmenu div#destination {
+div#controls div#destination {
 	margin-top:5px;
 }
 div#directions_panel {

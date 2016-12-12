@@ -39,11 +39,11 @@
 		Loading map...
 	</div>
 
-	<div id="leftmenu_hidden">
+	<div id="controls_hidden">
 		<input type="button" id="ShowMenuID" value="Show Menu">
 	</div>
 
-	<div id="leftmenu">
+	<div id="controls">
 		<div><input type="button" id="HideMenuID" value="Hide Menu"></div>
 
 		<div class="largetitle">Bike/Walk/Transit Directions</div>
