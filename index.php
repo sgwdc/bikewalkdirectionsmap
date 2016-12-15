@@ -47,7 +47,7 @@
 		<div><input type="button" id="HideMenuID" value="Hide Menu"></div>
 
 		<div class="largetitle">Bike/Walk/Transit Directions</div>
-		<strong><a href="about.php">About this map</a></strong>
+		<strong><a href="about.php">About this interactive map</a></strong>
 
 		<div class="divider"></div>
 
@@ -94,7 +94,7 @@
 		</div>
 
 		<div id="destination">
-			<strong>Enter your destination address:</strong>
+			<strong>Click on your destination; or<br>Enter your destination address:</strong>
 			<input id="address" type="text" class="destination-field" value=""><br>
 			<strong>City:</strong>
 			<input id="city" type="text" class="destination-field" value="Washington">

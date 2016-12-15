@@ -22,7 +22,7 @@
 		include_once($RelativeToRoot . 'analyticstracking.php');
 	?>
 
-	<h2>Bike/Walk/Transit Directions Interactive Map</h2>
+	<h2>About this Bike/Walk/Transit Directions Interactive Map</h2>
 
 	<p>This web application uses the Google Maps API and JavaScript/jQuery to provide users with multiple route choices for bicycling, walking or riding transit between two locations.</p>
 	<p>First your destination location is either a) geocoded on the map by typing in an address, city and state, or b) reverse geocoded by simply clicking anywhere on the map.</p>
